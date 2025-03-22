@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Lines ref="subwayTopo"></Lines>
+    <div class="business-map-content">
+      <Lines ref="subwayTopo"></Lines>
+    </div>
   </div>
 </template>
 
@@ -13,18 +15,27 @@ export default {
   name: 'App',
   components: {
     GraphDemo,
-    Lines
+    Lines,
+  },
+  data() {
+    return {
+      lingDataLoading: false,
+      topoData: null,
+      linesData: null,
+      abnormalLine: [],
+    }
   },
   methods: {
-    getlineData() {
+    async getlineData() {
       this.lingDataLoading = true
       const data = mock
       const lines = {}
       this.abnormalLine = data.alarmLines.sort((a, b) => a.presetLine - b.presetLine)
-      data.traces.forEach(item => {
+
+      data.traces.forEach((item) => {
         let { nodes, edges, serviceLineConfig } = item
         const lineNum = Number(serviceLineConfig.presetLine)
-        nodes = nodes.map(node => {
+        nodes = nodes.map((node) => {
           const isAbnormal = node.alarmPriority
           let color = ''
           if (isAbnormal) {
@@ -36,10 +47,10 @@ export default {
             id: `line-${lineNum}-${node.cmdbId}`,
             label: node.iconType === 'app_system' ? node.systemName : node.serviceName || node.name,
             isShowTooltip: node.iconType === 'app_service',
-            color
+            color,
           }
         })
-        edges = edges.map(edge => {
+        edges = edges.map((edge) => {
           const isAbnormal = edge.alarmPriority
           const source = `line-${lineNum}-${edge.source}`
           const target = `line-${lineNum}-${edge.target}`
@@ -54,27 +65,33 @@ export default {
             target,
             isAbnormal,
             isShowTooltip: edge.type !== 2,
-            color
+            color,
           }
         })
         lines[serviceLineConfig.presetLine] = {
           nodes,
           edges,
-          serviceLineConfig
+          serviceLineConfig,
         }
         // 本地模拟20条
       })
       console.log(lines, 'lines')
       this.topoData = generateDataForLines(lines)
       this.linesData = lines
-      console.log('this.topoData ', this.topoData)
-      this.$refs.subwayTopo.refreshData(this.topoData)
-    }
+
+      // 确保数据完整性
+      if (this.topoData && this.topoData.nodes && this.topoData.edges) {
+        await this.$nextTick()
+        this.$refs.subwayTopo.refreshData(this.topoData)
+      } else {
+        console.error('Topology data is incomplete:', this.topoData)
+      }
+    },
   },
   async mounted() {
     await this.$nextTick()
     this.getlineData()
-  }
+  },
 }
 </script>
 
@@ -84,6 +101,11 @@ body {
   height: 100%;
   width: 100%;
 }
+.business-map-content {
+  flex: 1;
+  position: relative;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,5 +113,8 @@ body {
   color: #2c3e50;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 </style>

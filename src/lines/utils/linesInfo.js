@@ -10,8 +10,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '0.5 195.757'
-        }
+          directiveValue: '0.5 195.757',
+        },
       },
       {
         id: 1,
@@ -22,8 +22,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '196.656'
-        }
+          directiveValue: '196.656',
+        },
       },
       {
         id: 2,
@@ -34,8 +34,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '203.283 195.757 208.656 190.384 208.656 183.757'
-        }
+          directiveValue: '203.283 195.757 208.656 190.384 208.656 183.757',
+        },
       },
       {
         id: 3,
@@ -46,8 +46,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '91.7683'
-        }
+          directiveValue: '91.7683',
+        },
       },
       {
         id: 4,
@@ -58,8 +58,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '208.656 87.8588 210.56 84.1945 213.759 81.9478'
-        }
+          directiveValue: '208.656 87.8588 210.56 84.1945 213.759 81.9478',
+        },
       },
       {
         id: 5,
@@ -70,8 +70,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '266.416 44.971'
-        }
+          directiveValue: '266.416 44.971',
+        },
       },
       {
         id: 6,
@@ -82,8 +82,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '268.436 43.5526 270.844 42.7915 273.312 42.7915'
-        }
+          directiveValue: '268.436 43.5526 270.844 42.7915 273.312 42.7915',
+        },
       },
       {
         id: 7,
@@ -94,8 +94,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '371.776'
-        }
+          directiveValue: '371.776',
+        },
       },
       {
         id: 8,
@@ -106,8 +106,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '374.53 42.7915 377.199 41.8445 379.338 40.1093'
-        }
+          directiveValue: '374.53 42.7915 377.199 41.8445 379.338 40.1093',
+        },
       },
       {
         id: 9,
@@ -118,8 +118,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '421.76 5.6822'
-        }
+          directiveValue: '421.76 5.6822',
+        },
       },
       {
         id: 10,
@@ -130,8 +130,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '423.898 3.94703 426.568 3 429.322 3'
-        }
+          directiveValue: '423.898 3.94703 426.568 3 429.322 3',
+        },
       },
       {
         id: 11,
@@ -142,8 +142,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '1027.24'
-        }
+          directiveValue: '1027.24',
+        },
       },
       {
         id: 12,
@@ -154,8 +154,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1029.78 3 1032.25 3.80438 1034.3 5.29757'
-        }
+          directiveValue: '1029.78 3 1032.25 3.80438 1034.3 5.29757',
+        },
       },
       {
         id: 13,
@@ -166,8 +166,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '1237.59 153.25'
-        }
+          directiveValue: '1237.59 153.25',
+        },
       },
       {
         id: 14,
@@ -178,8 +178,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1239.64 154.743 1242.11 155.547 1244.65 155.547'
-        }
+          directiveValue: '1239.64 154.743 1242.11 155.547 1244.65 155.547',
+        },
       },
       {
         id: 15,
@@ -190,8 +190,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '1469'
-        }
+          directiveValue: '1469',
+        },
       },
       {
         id: 16,
@@ -202,8 +202,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1475.63 155.547 1481 160.92 1481 167.547'
-        }
+          directiveValue: '1475.63 155.547 1481 160.92 1481 167.547',
+        },
       },
       {
         id: 17,
@@ -214,11 +214,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '296'
-        }
-      }
+          directiveValue: '296',
+        },
+      },
     ],
-    color: '#3F92FE'
+    color: '#3F92FE',
   },
   2: {
     pathsArr: [
@@ -231,8 +231,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '2 3'
-        }
+          directiveValue: '2 3',
+        },
       },
       {
         id: 1,
@@ -243,8 +243,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '172.04 122.728'
-        }
+          directiveValue: '172.04 122.728',
+        },
       },
       {
         id: 2,
@@ -255,8 +255,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '174.062 124.152 176.475 124.916 178.948 124.916'
-        }
+          directiveValue: '174.062 124.152 176.475 124.916 178.948 124.916',
+        },
       },
       {
         id: 3,
@@ -267,8 +267,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '791.275'
-        }
+          directiveValue: '791.275',
+        },
       },
       {
         id: 4,
@@ -279,8 +279,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '793.748 124.916 796.161 125.681 798.183 127.105'
-        }
+          directiveValue: '793.748 124.916 796.161 125.681 798.183 127.105',
+        },
       },
       {
         id: 5,
@@ -291,8 +291,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '846.214 160.924'
-        }
+          directiveValue: '846.214 160.924',
+        },
       },
       {
         id: 6,
@@ -303,8 +303,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '848.236 162.348 850.649 163.112 853.123 163.112'
-        }
+          directiveValue: '848.236 162.348 850.649 163.112 853.123 163.112',
+        },
       },
       {
         id: 7,
@@ -315,8 +315,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '956.015'
-        }
+          directiveValue: '956.015',
+        },
       },
       {
         id: 8,
@@ -327,8 +327,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '958.488 163.112 960.901 163.877 962.924 165.3'
-        }
+          directiveValue: '958.488 163.112 960.901 163.877 962.924 165.3',
+        },
       },
       {
         id: 9,
@@ -339,8 +339,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '1043.18 221.812'
-        }
+          directiveValue: '1043.18 221.812',
+        },
       },
       {
         id: 10,
@@ -351,8 +351,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1045.2 223.236 1047.62 224 1050.09 224'
-        }
+          directiveValue: '1045.2 223.236 1047.62 224 1050.09 224',
+        },
       },
       {
         id: 11,
@@ -363,11 +363,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '1176'
-        }
-      }
+          directiveValue: '1176',
+        },
+      },
     ],
-    color: '#00C29F'
+    color: '#00C29F',
   },
   3: {
     pathsArr: [
@@ -380,8 +380,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '3 0'
-        }
+          directiveValue: '3 0',
+        },
       },
       {
         id: 1,
@@ -392,8 +392,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '216.701'
-        }
+          directiveValue: '216.701',
+        },
       },
       {
         id: 2,
@@ -404,8 +404,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '3 219.88 4.26182 222.93 6.50838 225.18'
-        }
+          directiveValue: '3 219.88 4.26182 222.93 6.50838 225.18',
+        },
       },
       {
         id: 3,
@@ -416,8 +416,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '77.2635 296.041'
-        }
+          directiveValue: '77.2635 296.041',
+        },
       },
       {
         id: 4,
@@ -428,8 +428,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '79.5101 298.291 80.7719 301.34 80.7719 304.52'
-        }
+          directiveValue: '79.5101 298.291 80.7719 301.34 80.7719 304.52',
+        },
       },
       {
         id: 5,
@@ -440,8 +440,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '876.705'
-        }
+          directiveValue: '876.705',
+        },
       },
       {
         id: 6,
@@ -452,8 +452,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '80.7719 879.884 82.0337 882.934 84.2803 885.183'
-        }
+          directiveValue: '80.7719 879.884 82.0337 882.934 84.2803 885.183',
+        },
       },
       {
         id: 7,
@@ -464,11 +464,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '149 950'
-        }
-      }
+          directiveValue: '149 950',
+        },
+      },
     ],
-    color: '#5369C0'
+    color: '#5369C0',
   },
   4: {
     pathsArr: [
@@ -481,8 +481,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '3 0'
-        }
+          directiveValue: '3 0',
+        },
       },
       {
         id: 1,
@@ -493,8 +493,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '216.701'
-        }
+          directiveValue: '216.701',
+        },
       },
       {
         id: 2,
@@ -505,8 +505,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '3 219.88 4.26182 222.93 6.50838 225.18'
-        }
+          directiveValue: '3 219.88 4.26182 222.93 6.50838 225.18',
+        },
       },
       {
         id: 3,
@@ -517,8 +517,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '77.2635 296.041'
-        }
+          directiveValue: '77.2635 296.041',
+        },
       },
       {
         id: 4,
@@ -529,8 +529,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '79.5101 298.291 80.7719 301.34 80.7719 304.52'
-        }
+          directiveValue: '79.5101 298.291 80.7719 301.34 80.7719 304.52',
+        },
       },
       {
         id: 5,
@@ -541,8 +541,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '876.705'
-        }
+          directiveValue: '876.705',
+        },
       },
       {
         id: 6,
@@ -553,8 +553,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '80.7719 879.884 82.0337 882.934 84.2803 885.183'
-        }
+          directiveValue: '80.7719 879.884 82.0337 882.934 84.2803 885.183',
+        },
       },
       {
         id: 7,
@@ -565,11 +565,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '149 950'
-        }
-      }
+          directiveValue: '149 950',
+        },
+      },
     ],
-    color: '#5369C0'
+    color: '#5369C0',
   },
   5: {
     pathsArr: [
@@ -582,8 +582,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '2 424'
-        }
+          directiveValue: '2 424',
+        },
       },
       {
         id: 1,
@@ -594,8 +594,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '79.6607 369.291'
-        }
+          directiveValue: '79.6607 369.291',
+        },
       },
       {
         id: 2,
@@ -606,8 +606,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '82.8515 367.043 84.7498 363.384 84.7498 359.481'
-        }
+          directiveValue: '82.8515 367.043 84.7498 363.384 84.7498 359.481',
+        },
       },
       {
         id: 3,
@@ -618,8 +618,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '298.993'
-        }
+          directiveValue: '298.993',
+        },
       },
       {
         id: 4,
@@ -630,8 +630,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '84.7498 295.09 86.6481 291.431 89.8389 289.183'
-        }
+          directiveValue: '84.7498 295.09 86.6481 291.431 89.8389 289.183',
+        },
       },
       {
         id: 5,
@@ -642,8 +642,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '223.955 194.703'
-        }
+          directiveValue: '223.955 194.703',
+        },
       },
       {
         id: 6,
@@ -654,8 +654,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '225.978 193.279 228.392 192.514 230.866 192.514'
-        }
+          directiveValue: '225.978 193.279 228.392 192.514 230.866 192.514',
+        },
       },
       {
         id: 7,
@@ -666,8 +666,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '425.138'
-        }
+          directiveValue: '425.138',
+        },
       },
       {
         id: 8,
@@ -678,8 +678,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '427.363 192.514 429.544 191.895 431.438 190.727'
-        }
+          directiveValue: '427.363 192.514 429.544 191.895 431.438 190.727',
+        },
       },
       {
         id: 9,
@@ -690,8 +690,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '475.121 163.786'
-        }
+          directiveValue: '475.121 163.786',
+        },
       },
       {
         id: 10,
@@ -702,8 +702,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '477.014 162.618 479.195 162 481.42 162'
-        }
+          directiveValue: '477.014 162.618 479.195 162 481.42 162',
+        },
       },
       {
         id: 11,
@@ -714,8 +714,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '849.166'
-        }
+          directiveValue: '849.166',
+        },
       },
       {
         id: 12,
@@ -726,8 +726,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '851.874 162 854.503 161.084 856.624 159.4'
-        }
+          directiveValue: '851.874 162 854.503 161.084 856.624 159.4',
+        },
       },
       {
         id: 13,
@@ -738,8 +738,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '928.724 102.193'
-        }
+          directiveValue: '928.724 102.193',
+        },
       },
       {
         id: 14,
@@ -750,8 +750,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '930.845 100.51 933.474 99.5933 936.182 99.5933'
-        }
+          directiveValue: '930.845 100.51 933.474 99.5933 936.182 99.5933',
+        },
       },
       {
         id: 15,
@@ -762,8 +762,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '1100.53'
-        }
+          directiveValue: '1100.53',
+        },
       },
       {
         id: 16,
@@ -774,8 +774,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1103.01 99.5933 1105.42 98.8285 1107.45 97.4035'
-        }
+          directiveValue: '1103.01 99.5933 1105.42 98.8285 1107.45 97.4035',
+        },
       },
       {
         id: 17,
@@ -786,8 +786,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '1238.35 5.18982'
-        }
+          directiveValue: '1238.35 5.18982',
+        },
       },
       {
         id: 18,
@@ -798,8 +798,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '1240.37 3.76485 1242.78 3 1245.26 3'
-        }
+          directiveValue: '1240.37 3.76485 1242.78 3 1245.26 3',
+        },
       },
       {
         id: 19,
@@ -810,11 +810,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '1330'
-        }
-      }
+          directiveValue: '1330',
+        },
+      },
     ],
-    color: '#89CA73'
+    color: '#89CA73',
   },
   6: {
     pathsArr: [
@@ -827,8 +827,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '340 0'
-        }
+          directiveValue: '340 0',
+        },
       },
       {
         id: 1,
@@ -839,8 +839,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '58.6859'
-        }
+          directiveValue: '58.6859',
+        },
       },
       {
         id: 2,
@@ -851,8 +851,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '340 62.5954 338.096 66.2598 334.896 68.5065'
-        }
+          directiveValue: '340 62.5954 338.096 66.2598 334.896 68.5065',
+        },
       },
       {
         id: 3,
@@ -863,8 +863,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '274.663 110.803'
-        }
+          directiveValue: '274.663 110.803',
+        },
       },
       {
         id: 4,
@@ -875,8 +875,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '272.643 112.221 270.235 112.982 267.767 112.982'
-        }
+          directiveValue: '272.643 112.221 270.235 112.982 267.767 112.982',
+        },
       },
       {
         id: 5,
@@ -887,8 +887,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '124.662'
-        }
+          directiveValue: '124.662',
+        },
       },
       {
         id: 6,
@@ -899,8 +899,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '122.194 112.982 119.786 113.743 117.766 115.161'
-        }
+          directiveValue: '122.194 112.982 119.786 113.743 117.766 115.161',
+        },
       },
       {
         id: 7,
@@ -911,8 +911,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '84.9495 138.206'
-        }
+          directiveValue: '84.9495 138.206',
+        },
       },
       {
         id: 8,
@@ -923,8 +923,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '81.7501 140.452 79.8456 144.117 79.8456 148.026'
-        }
+          directiveValue: '81.7501 140.452 79.8456 144.117 79.8456 148.026',
+        },
       },
       {
         id: 9,
@@ -935,8 +935,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '244.038'
-        }
+          directiveValue: '244.038',
+        },
       },
       {
         id: 10,
@@ -947,8 +947,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '79.8456 247.948 81.75 251.612 84.9495 253.859'
-        }
+          directiveValue: '79.8456 247.948 81.75 251.612 84.9495 253.859',
+        },
       },
       {
         id: 11,
@@ -959,8 +959,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '100.557 264.819'
-        }
+          directiveValue: '100.557 264.819',
+        },
       },
       {
         id: 12,
@@ -971,8 +971,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '103.756 267.065 105.661 270.73 105.661 274.639'
-        }
+          directiveValue: '103.756 267.065 105.661 270.73 105.661 274.639',
+        },
       },
       {
         id: 13,
@@ -983,8 +983,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '512.5'
-        }
+          directiveValue: '512.5',
+        },
       },
       {
         id: 14,
@@ -995,8 +995,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '105.661 519.127 100.288 524.5 93.6609 524.5'
-        }
+          directiveValue: '105.661 519.127 100.288 524.5 93.6609 524.5',
+        },
       },
       {
         id: 15,
@@ -1007,8 +1007,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '71.831'
-        }
+          directiveValue: '71.831',
+        },
       },
       {
         id: 16,
@@ -1019,8 +1019,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '69.3629 524.5 66.9548 525.261 64.9349 526.679'
-        }
+          directiveValue: '69.3629 524.5 66.9548 525.261 64.9349 526.679',
+        },
       },
       {
         id: 17,
@@ -1031,8 +1031,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '8.10391 566.587'
-        }
+          directiveValue: '8.10391 566.587',
+        },
       },
       {
         id: 18,
@@ -1043,8 +1043,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '4.90445 568.833 3 572.498 3 576.407'
-        }
+          directiveValue: '4.90445 568.833 3 572.498 3 576.407',
+        },
       },
       {
         id: 19,
@@ -1055,11 +1055,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '702.686'
-        }
-      }
+          directiveValue: '702.686',
+        },
+      },
     ],
-    color: '#2E7B9C'
+    color: '#2E7B9C',
   },
   7: {
     pathsArr: [
@@ -1072,8 +1072,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '0 3'
-        }
+          directiveValue: '0 3',
+        },
       },
       {
         id: 1,
@@ -1084,8 +1084,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '374.177'
-        }
+          directiveValue: '374.177',
+        },
       },
       {
         id: 2,
@@ -1096,8 +1096,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '377.354 3 380.4 4.25924 382.65 6.50173'
-        }
+          directiveValue: '377.354 3 380.4 4.25924 382.65 6.50173',
+        },
       },
       {
         id: 3,
@@ -1108,8 +1108,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '422.61 46.3399'
-        }
+          directiveValue: '422.61 46.3399',
+        },
       },
       {
         id: 4,
@@ -1120,8 +1120,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '424.859 48.5824 427.906 49.8417 431.082 49.8417'
-        }
+          directiveValue: '424.859 48.5824 427.906 49.8417 431.082 49.8417',
+        },
       },
       {
         id: 5,
@@ -1132,8 +1132,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '577'
-        }
+          directiveValue: '577',
+        },
       },
       {
         id: 6,
@@ -1144,8 +1144,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '583.627 49.8417 589 55.2143 589 61.8417'
-        }
+          directiveValue: '583.627 49.8417 589 55.2143 589 61.8417',
+        },
       },
       {
         id: 7,
@@ -1156,8 +1156,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '64'
-        }
+          directiveValue: '64',
+        },
       },
       {
         id: 8,
@@ -1168,8 +1168,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '589 70.6274 594.373 76 601 76'
-        }
+          directiveValue: '589 70.6274 594.373 76 601 76',
+        },
       },
       {
         id: 9,
@@ -1180,11 +1180,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '694'
-        }
-      }
+          directiveValue: '694',
+        },
+      },
     ],
-    color: '#3C5F80'
+    color: '#3C5F80',
   },
   8: {
     pathsArr: [
@@ -1197,8 +1197,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '0 3'
-        }
+          directiveValue: '0 3',
+        },
       },
       {
         id: 1,
@@ -1209,8 +1209,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '113.627'
-        }
+          directiveValue: '113.627',
+        },
       },
       {
         id: 2,
@@ -1221,8 +1221,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '120.254 3 125.627 8.37259 125.627 15'
-        }
+          directiveValue: '120.254 3 125.627 8.37259 125.627 15',
+        },
       },
       {
         id: 3,
@@ -1233,8 +1233,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '19.383'
-        }
+          directiveValue: '19.383',
+        },
       },
       {
         id: 4,
@@ -1245,8 +1245,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '125.627 26.0104 131 31.383 137.627 31.383'
-        }
+          directiveValue: '125.627 26.0104 131 31.383 137.627 31.383',
+        },
       },
       {
         id: 5,
@@ -1257,8 +1257,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '298.287'
-        }
+          directiveValue: '298.287',
+        },
       },
       {
         id: 6,
@@ -1269,8 +1269,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '300.746 31.383 303.146 32.1385 305.162 33.5473'
-        }
+          directiveValue: '300.746 31.383 303.146 32.1385 305.162 33.5473',
+        },
       },
       {
         id: 7,
@@ -1281,8 +1281,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '339.577 57.6016'
-        }
+          directiveValue: '339.577 57.6016',
+        },
       },
       {
         id: 8,
@@ -1293,8 +1293,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '341.593 59.0104 343.993 59.766 346.452 59.766'
-        }
+          directiveValue: '341.593 59.0104 343.993 59.766 346.452 59.766',
+        },
       },
       {
         id: 9,
@@ -1305,8 +1305,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '704.811'
-        }
+          directiveValue: '704.811',
+        },
       },
       {
         id: 10,
@@ -1317,8 +1317,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '707.27 59.766 709.67 60.5215 711.686 61.9303'
-        }
+          directiveValue: '707.27 59.766 709.67 60.5215 711.686 61.9303',
+        },
       },
       {
         id: 11,
@@ -1329,11 +1329,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '759 95'
-        }
-      }
+          directiveValue: '759 95',
+        },
+      },
     ],
-    color: '#7BB04E'
+    color: '#7BB04E',
   },
   9: {
     pathsArr: [
@@ -1346,8 +1346,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '3 0'
-        }
+          directiveValue: '3 0',
+        },
       },
       {
         id: 1,
@@ -1358,8 +1358,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '94.4293'
-        }
+          directiveValue: '94.4293',
+        },
       },
       {
         id: 2,
@@ -1370,8 +1370,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '3 101.057 8.37258 106.429 15 106.429'
-        }
+          directiveValue: '3 101.057 8.37258 106.429 15 106.429',
+        },
       },
       {
         id: 3,
@@ -1382,8 +1382,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '62.3772'
-        }
+          directiveValue: '62.3772',
+        },
       },
       {
         id: 4,
@@ -1394,8 +1394,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '64.8641 106.429 67.2897 107.202 69.3184 108.641'
-        }
+          directiveValue: '64.8641 106.429 67.2897 107.202 69.3184 108.641',
+        },
       },
       {
         id: 5,
@@ -1406,8 +1406,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '311.382 280.289'
-        }
+          directiveValue: '311.382 280.289',
+        },
       },
       {
         id: 6,
@@ -1418,8 +1418,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '313.41 281.727 315.836 282.5 318.323 282.5'
-        }
+          directiveValue: '313.41 281.727 315.836 282.5 318.323 282.5',
+        },
       },
       {
         id: 7,
@@ -1430,11 +1430,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '443.5'
-        }
-      }
+          directiveValue: '443.5',
+        },
+      },
     ],
-    color: '#1B65C5'
+    color: '#1B65C5',
   },
   10: {
     pathsArr: [
@@ -1447,8 +1447,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '275 374'
-        }
+          directiveValue: '275 374',
+        },
       },
       {
         id: 1,
@@ -1459,8 +1459,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '179.509 306.452'
-        }
+          directiveValue: '179.509 306.452',
+        },
       },
       {
         id: 2,
@@ -1471,8 +1471,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '177.483 305.018 175.062 304.249 172.579 304.249'
-        }
+          directiveValue: '177.483 305.018 175.062 304.249 172.579 304.249',
+        },
       },
       {
         id: 3,
@@ -1483,8 +1483,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '54.6722'
-        }
+          directiveValue: '54.6722',
+        },
       },
       {
         id: 4,
@@ -1495,8 +1495,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '48.0448 304.249 42.6722 298.876 42.6722 292.249'
-        }
+          directiveValue: '48.0448 304.249 42.6722 298.876 42.6722 292.249',
+        },
       },
       {
         id: 5,
@@ -1507,8 +1507,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '37.2105'
-        }
+          directiveValue: '37.2105',
+        },
       },
       {
         id: 6,
@@ -1519,8 +1519,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '42.6722 33.3157 40.782 29.6631 37.6022 27.4138'
-        }
+          directiveValue: '42.6722 33.3157 40.782 29.6631 37.6022 27.4138',
+        },
       },
       {
         id: 7,
@@ -1531,11 +1531,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '2 2.22949'
-        }
-      }
+          directiveValue: '2 2.22949',
+        },
+      },
     ],
-    color: '#4E4B87'
+    color: '#4E4B87',
   },
   11: {
     pathsArr: [
@@ -1548,8 +1548,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '887 62.4838'
-        }
+          directiveValue: '887 62.4838',
+        },
       },
       {
         id: 1,
@@ -1560,8 +1560,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '813.811'
-        }
+          directiveValue: '813.811',
+        },
       },
       {
         id: 2,
@@ -1572,8 +1572,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '807.183 62.4838 801.811 57.1112 801.811 50.4838'
-        }
+          directiveValue: '807.183 62.4838 801.811 57.1112 801.811 50.4838',
+        },
       },
       {
         id: 3,
@@ -1584,8 +1584,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '15'
-        }
+          directiveValue: '15',
+        },
       },
       {
         id: 4,
@@ -1596,8 +1596,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '801.811 8.37258 796.438 3 789.811 3'
-        }
+          directiveValue: '801.811 8.37258 796.438 3 789.811 3',
+        },
       },
       {
         id: 5,
@@ -1608,8 +1608,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '584.815'
-        }
+          directiveValue: '584.815',
+        },
       },
       {
         id: 6,
@@ -1620,8 +1620,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '582.346 3 579.937 3.76171 577.917 5.18123'
-        }
+          directiveValue: '582.346 3 579.937 3.76171 577.917 5.18123',
+        },
       },
       {
         id: 7,
@@ -1632,8 +1632,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '512.988 50.8'
-        }
+          directiveValue: '512.988 50.8',
+        },
       },
       {
         id: 8,
@@ -1644,8 +1644,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '510.968 52.2195 508.559 52.9812 506.09 52.9812'
-        }
+          directiveValue: '510.968 52.2195 508.559 52.9812 506.09 52.9812',
+        },
       },
       {
         id: 9,
@@ -1656,8 +1656,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '368.543'
-        }
+          directiveValue: '368.543',
+        },
       },
       {
         id: 10,
@@ -1668,8 +1668,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '361.916 52.9812 356.543 58.3538 356.543 64.9812'
-        }
+          directiveValue: '361.916 52.9812 356.543 58.3538 356.543 64.9812',
+        },
       },
       {
         id: 11,
@@ -1680,8 +1680,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '129.713'
-        }
+          directiveValue: '129.713',
+        },
       },
       {
         id: 12,
@@ -1692,8 +1692,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '356.543 136.341 351.17 141.713 344.543 141.713'
-        }
+          directiveValue: '356.543 136.341 351.17 141.713 344.543 141.713',
+        },
       },
       {
         id: 13,
@@ -1704,8 +1704,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '258.948'
-        }
+          directiveValue: '258.948',
+        },
       },
       {
         id: 14,
@@ -1716,8 +1716,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '256.504 141.713 254.118 142.46 252.109 143.853'
-        }
+          directiveValue: '256.504 141.713 254.118 142.46 252.109 143.853',
+        },
       },
       {
         id: 15,
@@ -1728,8 +1728,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '184.455 190.781'
-        }
+          directiveValue: '184.455 190.781',
+        },
       },
       {
         id: 16,
@@ -1740,8 +1740,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '181.223 193.023 179.294 196.707 179.294 200.641'
-        }
+          directiveValue: '181.223 193.023 179.294 196.707 179.294 200.641',
+        },
       },
       {
         id: 17,
@@ -1752,8 +1752,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '226.271'
-        }
+          directiveValue: '226.271',
+        },
       },
       {
         id: 18,
@@ -1764,8 +1764,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '179.294 229.965 177.593 233.453 174.683 235.727'
-        }
+          directiveValue: '179.294 229.965 177.593 233.453 174.683 235.727',
+        },
       },
       {
         id: 19,
@@ -1776,8 +1776,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '111.112 285.397'
-        }
+          directiveValue: '111.112 285.397',
+        },
       },
       {
         id: 20,
@@ -1788,8 +1788,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '108.201 287.671 106.5 291.159 106.5 294.853'
-        }
+          directiveValue: '108.201 287.671 106.5 291.159 106.5 294.853',
+        },
       },
       {
         id: 21,
@@ -1800,8 +1800,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '373'
-        }
+          directiveValue: '373',
+        },
       },
       {
         id: 22,
@@ -1812,8 +1812,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '106.5 379.627 101.127 385 94.5 385'
-        }
+          directiveValue: '106.5 379.627 101.127 385 94.5 385',
+        },
       },
       {
         id: 23,
@@ -1824,11 +1824,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '0.5'
-        }
-      }
+          directiveValue: '0.5',
+        },
+      },
     ],
-    color: '#6AB4DA'
+    color: '#6AB4DA',
   },
   12: {
     pathsArr: [
@@ -1841,8 +1841,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '129 0.5'
-        }
+          directiveValue: '129 0.5',
+        },
       },
       {
         id: 1,
@@ -1853,8 +1853,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '117.997'
-        }
+          directiveValue: '117.997',
+        },
       },
       {
         id: 2,
@@ -1865,8 +1865,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '129 121.491 127.478 124.811 124.83 127.09'
-        }
+          directiveValue: '129 121.491 127.478 124.811 124.83 127.09',
+        },
       },
       {
         id: 3,
@@ -1877,8 +1877,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '7.1697 228.41'
-        }
+          directiveValue: '7.1697 228.41',
+        },
       },
       {
         id: 4,
@@ -1889,8 +1889,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '4.52242 230.689 3 234.009 3 237.503'
-        }
+          directiveValue: '4.52242 230.689 3 234.009 3 237.503',
+        },
       },
       {
         id: 5,
@@ -1901,11 +1901,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '319'
-        }
-      }
+          directiveValue: '319',
+        },
+      },
     ],
-    color: '#7E8CDB'
+    color: '#7E8CDB',
   },
   13: {
     pathsArr: [
@@ -1918,8 +1918,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '793 322'
-        }
+          directiveValue: '793 322',
+        },
       },
       {
         id: 1,
@@ -1930,8 +1930,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '660.556'
-        }
+          directiveValue: '660.556',
+        },
       },
       {
         id: 2,
@@ -1942,8 +1942,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '658.007 322 655.525 321.189 653.469 319.684'
-        }
+          directiveValue: '658.007 322 655.525 321.189 653.469 319.684',
+        },
       },
       {
         id: 3,
@@ -1954,8 +1954,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '572.851 260.691'
-        }
+          directiveValue: '572.851 260.691',
+        },
       },
       {
         id: 4,
@@ -1966,8 +1966,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '569.763 258.431 567.937 254.834 567.937 251.007'
-        }
+          directiveValue: '569.763 258.431 567.937 254.834 567.937 251.007',
+        },
       },
       {
         id: 5,
@@ -1978,8 +1978,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '234'
-        }
+          directiveValue: '234',
+        },
       },
       {
         id: 6,
@@ -1990,8 +1990,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '567.937 227.373 562.565 222 555.937 222'
-        }
+          directiveValue: '567.937 227.373 562.565 222 555.937 222',
+        },
       },
       {
         id: 7,
@@ -2002,8 +2002,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '49'
-        }
+          directiveValue: '49',
+        },
       },
       {
         id: 8,
@@ -2014,8 +2014,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '42.3726 222 37 216.627 37 210'
-        }
+          directiveValue: '42.3726 222 37 216.627 37 210',
+        },
       },
       {
         id: 9,
@@ -2026,8 +2026,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '37 34.2259'
-        }
+          directiveValue: '37 34.2259',
+        },
       },
       {
         id: 10,
@@ -2038,8 +2038,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '37 30.3221 35.101 26.6623 31.9092 24.4146'
-        }
+          directiveValue: '37 30.3221 35.101 26.6623 31.9092 24.4146',
+        },
       },
       {
         id: 11,
@@ -2050,11 +2050,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '1.5 3'
-        }
-      }
+          directiveValue: '1.5 3',
+        },
+      },
     ],
-    color: '#57A476'
+    color: '#57A476',
   },
   14: {
     pathsArr: [
@@ -2067,8 +2067,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '379 2'
-        }
+          directiveValue: '379 2',
+        },
       },
       {
         id: 1,
@@ -2079,8 +2079,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '89.5278 292.471'
-        }
+          directiveValue: '89.5278 292.471',
+        },
       },
       {
         id: 2,
@@ -2091,8 +2091,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '87.2762 294.73 84.2177 296 81.0279 296'
-        }
+          directiveValue: '87.2762 294.73 84.2177 296 81.0279 296',
+        },
       },
       {
         id: 3,
@@ -2103,11 +2103,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '0'
-        }
-      }
+          directiveValue: '0',
+        },
+      },
     ],
-    color: '#36416C'
+    color: '#36416C',
   },
   15: {
     pathsArr: [
@@ -2120,8 +2120,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '423 0'
-        }
+          directiveValue: '423 0',
+        },
       },
       {
         id: 1,
@@ -2132,8 +2132,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '78.2039'
-        }
+          directiveValue: '78.2039',
+        },
       },
       {
         id: 2,
@@ -2144,8 +2144,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '423 82.1134 421.095 85.7778 417.896 88.0245'
-        }
+          directiveValue: '423 82.1134 421.095 85.7778 417.896 88.0245',
+        },
       },
       {
         id: 3,
@@ -2156,8 +2156,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '357.663 130.321'
-        }
+          directiveValue: '357.663 130.321',
+        },
       },
       {
         id: 4,
@@ -2168,8 +2168,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '355.643 131.739 353.235 132.5 350.767 132.5'
-        }
+          directiveValue: '355.643 131.739 353.235 132.5 350.767 132.5',
+        },
       },
       {
         id: 5,
@@ -2180,8 +2180,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '38.3581 132.5'
-        }
+          directiveValue: '38.3581 132.5',
+        },
       },
       {
         id: 6,
@@ -2192,8 +2192,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '35.8644 132.5 33.4325 133.277 31.4007 134.723'
-        }
+          directiveValue: '35.8644 132.5 33.4325 133.277 31.4007 134.723',
+        },
       },
       {
         id: 7,
@@ -2204,11 +2204,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '1.5 156'
-        }
-      }
+          directiveValue: '1.5 156',
+        },
+      },
     ],
-    color: '#7EAAD0'
+    color: '#7EAAD0',
   },
   16: {
     pathsArr: [
@@ -2221,8 +2221,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '0.5 155'
-        }
+          directiveValue: '0.5 155',
+        },
       },
       {
         id: 1,
@@ -2233,8 +2233,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '143.528'
-        }
+          directiveValue: '143.528',
+        },
       },
       {
         id: 2,
@@ -2245,8 +2245,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '150.156 155 155.528 149.627 155.528 143'
-        }
+          directiveValue: '150.156 155 155.528 149.627 155.528 143',
+        },
       },
       {
         id: 3,
@@ -2257,8 +2257,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '43.2728'
-        }
+          directiveValue: '43.2728',
+        },
       },
       {
         id: 4,
@@ -2269,8 +2269,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '155.528 40.0874 156.795 37.0328 159.049 34.7819'
-        }
+          directiveValue: '155.528 40.0874 156.795 37.0328 159.049 34.7819',
+        },
       },
       {
         id: 5,
@@ -2281,8 +2281,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '187.358 6.50917'
-        }
+          directiveValue: '187.358 6.50917',
+        },
       },
       {
         id: 6,
@@ -2293,8 +2293,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '189.608 4.26213 192.658 3 195.838 3'
-        }
+          directiveValue: '189.608 4.26213 192.658 3 195.838 3',
+        },
       },
       {
         id: 7,
@@ -2305,11 +2305,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '739 3'
-        }
-      }
+          directiveValue: '739 3',
+        },
+      },
     ],
-    color: '#467341'
+    color: '#467341',
   },
   17: {
     pathsArr: [
@@ -2322,8 +2322,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '518.5 275.5'
-        }
+          directiveValue: '518.5 275.5',
+        },
       },
       {
         id: 1,
@@ -2334,8 +2334,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'V',
-          directiveValue: '163.687'
-        }
+          directiveValue: '163.687',
+        },
       },
       {
         id: 2,
@@ -2346,8 +2346,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '518.5 157.059 513.127 151.687 506.5 151.687'
-        }
+          directiveValue: '518.5 157.059 513.127 151.687 506.5 151.687',
+        },
       },
       {
         id: 3,
@@ -2358,8 +2358,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '268.472'
-        }
+          directiveValue: '268.472',
+        },
       },
       {
         id: 4,
@@ -2370,8 +2370,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '265.289 151.687 262.236 150.422 259.985 148.17'
-        }
+          directiveValue: '265.289 151.687 262.236 150.422 259.985 148.17',
+        },
       },
       {
         id: 5,
@@ -2382,8 +2382,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '118.406 6.51692'
-        }
+          directiveValue: '118.406 6.51692',
+        },
       },
       {
         id: 6,
@@ -2394,8 +2394,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '116.155 4.26513 113.102 3 109.918 3'
-        }
+          directiveValue: '116.155 4.26513 113.102 3 109.918 3',
+        },
       },
       {
         id: 7,
@@ -2406,11 +2406,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '0 3'
-        }
-      }
+          directiveValue: '0 3',
+        },
+      },
     ],
-    color: '#A4CD3E'
+    color: '#A4CD3E',
   },
   18: {
     pathsArr: [
@@ -2423,8 +2423,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '0.5 152'
-        }
+          directiveValue: '0.5 152',
+        },
       },
       {
         id: 1,
@@ -2435,8 +2435,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '118.02'
-        }
+          directiveValue: '118.02',
+        },
       },
       {
         id: 2,
@@ -2447,8 +2447,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '121.198 152 124.246 150.739 126.495 148.495'
-        }
+          directiveValue: '121.198 152 124.246 150.739 126.495 148.495',
+        },
       },
       {
         id: 3,
@@ -2459,8 +2459,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '215.75 59.4413'
-        }
+          directiveValue: '215.75 59.4413',
+        },
       },
       {
         id: 4,
@@ -2471,8 +2471,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '218 57.1967 221.048 55.9362 224.226 55.9362'
-        }
+          directiveValue: '218 57.1967 221.048 55.9362 224.226 55.9362',
+        },
       },
       {
         id: 5,
@@ -2483,8 +2483,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '690.479'
-        }
+          directiveValue: '690.479',
+        },
       },
       {
         id: 6,
@@ -2495,8 +2495,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '693.657 55.9362 696.705 54.6756 698.955 52.431'
-        }
+          directiveValue: '693.657 55.9362 696.705 54.6756 698.955 52.431',
+        },
       },
       {
         id: 7,
@@ -2507,11 +2507,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '749.5 2'
-        }
-      }
+          directiveValue: '749.5 2',
+        },
+      },
     ],
-    color: '#5E3831'
+    color: '#5E3831',
   },
   19: {
     pathsArr: [
@@ -2524,8 +2524,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '542.378 2'
-        }
+          directiveValue: '542.378 2',
+        },
       },
       {
         id: 1,
@@ -2536,8 +2536,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '469.957 74.4216'
-        }
+          directiveValue: '469.957 74.4216',
+        },
       },
       {
         id: 2,
@@ -2548,8 +2548,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '467.706 76.672 464.654 77.9363 461.471 77.9363'
-        }
+          directiveValue: '467.706 76.672 464.654 77.9363 461.471 77.9363',
+        },
       },
       {
         id: 3,
@@ -2560,8 +2560,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '288.16'
-        }
+          directiveValue: '288.16',
+        },
       },
       {
         id: 4,
@@ -2572,8 +2572,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '285.034 77.9363 282.03 79.1568 279.79 81.3379'
-        }
+          directiveValue: '285.034 77.9363 282.03 79.1568 279.79 81.3379',
+        },
       },
       {
         id: 5,
@@ -2584,8 +2584,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '183.476 175.099'
-        }
+          directiveValue: '183.476 175.099',
+        },
       },
       {
         id: 6,
@@ -2596,8 +2596,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '181.236 177.28 178.233 178.5 175.106 178.5'
-        }
+          directiveValue: '181.236 177.28 178.233 178.5 175.106 178.5',
+        },
       },
       {
         id: 7,
@@ -2608,11 +2608,11 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '0.5'
-        }
-      }
+          directiveValue: '0.5',
+        },
+      },
     ],
-    color: '#43AA21'
+    color: '#43AA21',
   },
   20: {
     pathsArr: [
@@ -2625,8 +2625,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'M',
-          directiveValue: '2 211.5'
-        }
+          directiveValue: '2 211.5',
+        },
       },
       {
         id: 1,
@@ -2637,8 +2637,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '74.4222 139.078'
-        }
+          directiveValue: '74.4222 139.078',
+        },
       },
       {
         id: 2,
@@ -2649,8 +2649,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '76.6726 136.828 79.7248 135.564 82.9074 135.564'
-        }
+          directiveValue: '76.6726 136.828 79.7248 135.564 82.9074 135.564',
+        },
       },
       {
         id: 3,
@@ -2661,8 +2661,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '222.317'
-        }
+          directiveValue: '222.317',
+        },
       },
       {
         id: 4,
@@ -2673,8 +2673,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '225.458 135.564 228.473 134.333 230.716 132.135'
-        }
+          directiveValue: '225.458 135.564 228.473 134.333 230.716 132.135',
+        },
       },
       {
         id: 5,
@@ -2685,8 +2685,8 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'L',
-          directiveValue: '359.518 5.92861'
-        }
+          directiveValue: '359.518 5.92861',
+        },
       },
       {
         id: 6,
@@ -2697,8 +2697,8 @@ export default {
         type: 'cDirective',
         directiveObj: {
           directive: 'C',
-          directiveValue: '361.761 3.73082 364.777 2.49985 367.917 2.49985'
-        }
+          directiveValue: '361.761 3.73082 364.777 2.49985 367.917 2.49985',
+        },
       },
       {
         id: 7,
@@ -2709,10 +2709,10 @@ export default {
         type: 'base',
         directiveObj: {
           directive: 'H',
-          directiveValue: '542.5'
-        }
-      }
+          directiveValue: '542.5',
+        },
+      },
     ],
-    color: '#9C9757'
-  }
+    color: '#9C9757',
+  },
 }

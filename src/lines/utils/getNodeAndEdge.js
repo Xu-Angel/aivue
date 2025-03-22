@@ -1,4 +1,5 @@
 import { LINE_COLORS, linesOthInfo, rectWidth, rectHeight, circleSize } from './const'
+import { fittingString } from './index'
 import _ from 'lodash'
 import linesInfo from './linesInfo'
 import {
@@ -12,7 +13,8 @@ import {
   genPointpos,
   calculateSegmentDistances,
   findValidNextNode,
-  calculateDistance
+  calculateDistance,
+  calculateNewCoordinate,
 } from './tool'
 
 /**
@@ -22,18 +24,18 @@ import {
  * @returns
  */
 function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes = [] }) {
-  const { isBranchNode, nodeSize, isStartNode, shapeType, prevId, label, lineNum, isLastNode } =
-    node
+  const { nodeSize, isStartNode, shapeType, prevId, label, lineNum, isLastNode, isBrancheNode } = node
   const vGap = 8 // 竖向
   const hGap = 4 // 水平
-  const direction = isStartNode ? calculateDirection(prevNode, node) : ''
+  const direction = !isStartNode ? calculateDirection(prevNode, node) : ''
   const textAttrs = {
     x: shapeType === 'rect' ? nodeSize[0] / 2 : 0,
     y: shapeType === 'rect' ? nodeSize[1] / 2 - 5 : nodeSize / 2 + hGap,
     fontSize: 14,
-    text: label,
+    fill: '#333',
+    text: '',
     textAlign: 'center', // 设置文本内容的当前对齐方式。支持的属性值：center / end / left / right / start。默认值为 start。
-    textBaseline: 'top' // 设置在绘制文本时使用的当前文本基线。支持的属性值：top / middle / bottom。默认值为 bottom。
+    textBaseline: 'top', // 设置在绘制文本时使用的当前文本基线。支持的属性值：top / middle / bottom。默认值为 bottom。
   }
 
   const maxWidth = isStartNode ? rectWidth - 30 : 77
@@ -42,9 +44,11 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
 
   const directionMap = {
     N: () => {
-      if (isBranchNode) {
-        textAttrs.y = vGap
-        textAttrs.textBaseline = 'bottom'
+      if (isBrancheNode) {
+        if (isLastNode) {
+          textAttrs.y = -vGap
+          textAttrs.textBaseline = 'bottom'
+        }
       } else {
         // noop
       }
@@ -52,24 +56,32 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
     S: () => {
       textAttrs.textAlign = 'left'
       textAttrs.textBaseline = 'middle'
-      textAttrs.y = hGap
+      textAttrs.x = nodeSize / 2 + hGap
+      textAttrs.y = 0
       if (isLastNode) {
-        textAttrs.y = vGap
+        textAttrs.y = nodeSize + vGap
         textAttrs.textAlign = 'center'
-      } else {
-        textAttrs.y = nodeSize / 2 + hGap
-        textAttrs.textAlign = 'left'
-        textAttrs.textBaseline = 'middle'
+        if (isBrancheNode) {
+          textAttrs.y = 0
+          textAttrs.x = nodeSize / 2 + hGap
+          textAttrs.textAlign = 'left'
+          textAttrs.textBaseline = 'middle'
+          // noop
+        } else {
+          // noop
+        }
       }
-      // noop
     },
     E: () => {
-      if (isBranchNode) {
-        // noop
-      } else {
-        textAttrs.textAlign = 'left'
-        textAttrs.textBaseline = 'bottom'
-        textAttrs.x = nodeSize / 2 + hGap
+      if (isLastNode) {
+        if (isBrancheNode) {
+          // noop
+        } else {
+          textAttrs.textAlign = 'left'
+          textAttrs.textBaseline = 'bottom'
+          textAttrs.y = nodeSize / 2
+          textAttrs.x = nodeSize / 2 + hGap
+        }
       }
     },
     W: () => {
@@ -92,14 +104,17 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
         }
       }
     },
-    SE: () => {
+    WS: () => {
       textAttrs.textAlign = 'left'
       textAttrs.textBaseline = 'bottom'
-      textAttrs.y = nodeSize / 2 + hGap
+      textAttrs.y = nodeSize / 2
+      textAttrs.x = nodeSize / 2 + hGap
+
       if (isLastNode) {
-        if (isBranchNode) {
+        if (isBrancheNode) {
           textAttrs.textAlign = 'center'
           textAttrs.textBaseline = 'bottom'
+          textAttrs.y = nodeSize + vGap + 4
           textAttrs.x = 0
         } else {
           // noop
@@ -109,13 +124,16 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
     EN: () => {
       textAttrs.textAlign = 'left'
       textAttrs.textBaseline = 'bottom'
+      textAttrs.y = nodeSize / 2
       textAttrs.x = nodeSize / 2 + hGap
     },
     WN: () => {
       textAttrs.textAlign = 'left'
-      textAttrs.y = nodeSize / 2 + hGap
+      textAttrs.y = -nodeSize / 2
+      textAttrs.x = nodeSize / 2 + hGap
+
       if (isLastNode) {
-        if (isBranchNode) {
+        if (isBrancheNode) {
           textAttrs.textAlign = 'center'
           textAttrs.textBaseline = 'top'
           textAttrs.y = -nodeSize - vGap
@@ -124,7 +142,7 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
           // noop
         }
       }
-    }
+    },
   }
 
   if (directionMap[direction]) {
@@ -140,7 +158,7 @@ function calculateTextAttrs({ node = {}, prevNode = {}, nodes = [], lineNumNodes
 * @returns Array
 */
 function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
-  points.forEach(item => {
+  points.forEach((item) => {
     item.isC = item.directiveObj.directive.toUpperCase() === 'C'
     item.length = 0
     item.partsNum = 0
@@ -169,12 +187,10 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
     item.length = length
   })
   // 2.每个指令对象相加，得出整个指令数组渲染的线的长度
-  const totalLength = npoints
-    .filter(item => +item.length > 0)
-    .reduce((acc, item) => acc + +item.length, 0)
-  console.log('整个指令数组渲染的线的长度为：${totalLength}', totalLength)
+  const totalLength = npoints.filter((item) => +item.length > 0).reduce((acc, item) => acc + +item.length, 0)
+  // console.log('整个指令数组渲染的线的长度为：${totalLength}', totalLength)
   // 2-1.计算每个指令对象的长度占整个指令数组渲染的线的长度的百分比
-  npoints.forEach(item => {
+  npoints.forEach((item) => {
     item.startPercent = 0
     item.endPercent = 0
     if (item.length) {
@@ -183,24 +199,20 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
   })
   // 3.根据传入的totalNumPoints计算得出分别要落在哪个百分比上，就可以得出落在哪个指令对象的区间上
   // 3-1.计算出每个指令对象的百分比区间
-  const lenpoints = npoints.filter(item => item.length)
+  const lenpoints = npoints.filter((item) => item.length)
   lenpoints.forEach((item, index) => {
-    const idx = npoints.findIndex(n => n.id === item.id)
+    const idx = npoints.findIndex((n) => n.id === item.id)
     npoints[idx].startPercent = lenpoints[index - 1]?.endPercent || 0
     npoints[idx].endPercent = npoints[idx].startPercent + npoints[idx].percent
   })
   // 3-2.计算出新增点落在哪指令对象的区间上,使用百分比来平均分配新增点
-  // console.log(JSON.parse(JSON.stringify(npoints)), 'npoints')
   let firstPointPercentOffset = 0
   for (let i = 0; i < totalNumPoints; i++) {
     const id = trueNodes[i].id // 新生成的点的起始ID
     const denominator = totalNumPoints
     const numerator = i + 1
     let percent = numerator / denominator
-    const targetIndex = npoints.findIndex(
-      item => item.startPercent <= percent && item.endPercent >= percent
-    ) // 实际的逻辑标点，用于连接关系
-    console.log(targetIndex, 'targetIndex')
+    const targetIndex = npoints.findIndex((item) => item.startPercent <= percent && item.endPercent >= percent) // 实际的逻辑标点，用于连接关系
     let target = npoints[targetIndex]
     // 3-3.根据新增点落在的百分比位置，计算出新增点的坐标
     // 如果百分比为1，则新增点的坐标就是目标点的坐标
@@ -208,7 +220,7 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
       ...trueNodes[i],
       // 保存后端的数据
       data: {
-        ...trueNodes[i].data
+        ...trueNodes[i].data,
       },
       id: id,
       dataId: trueNodes[i].id, // 后端数据的id
@@ -216,7 +228,7 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
       nextId: null,
       x: null, // 新生成的点的X坐标
       y: null, // 新生成的点的Y坐标
-      type: 'trueNode' // 新生成的点用于填充真实业务数据
+      type: 'trueNode', // 新生成的点用于填充真实业务数据
     }
     // 两个节点及以上 第一个节点要靠近标号
     // 找到抹去用来标号的起始节点，开始寻找第一个不是贝塞尔曲线的节点
@@ -256,8 +268,7 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
       // 边界处理补上第一个节点百分比偏差
       percent = Math.min(firstPointPercentOffset + percent, 0.9999)
       // 寻找逻辑点的前一个点
-      console.log(npoints, target, '---')
-      const prev = npoints.find(item => item.id === target.prevId) || {}
+      const prev = npoints.find((item) => item.id === target.prevId) || {}
       // 新生成的点的位置
       // 这个点t在区间百分比
       const t = (percent - target.startPercent) / (target.endPercent - target.startPercent)
@@ -268,7 +279,6 @@ function generateTruePoints(points = [], trueNodes = [], lineKey = '') {
       nObj.dir = dir
       nObj.extraInfo = { percent, prev, target, t }
       // 插入新生成的点在目标点的前面
-      // console.log({ isBias, iSH, iSV, target, percent, i })
       npoints.splice(targetIndex, 0, nObj)
       target.partsNum++
       nObj.partsNum = target.partsNum
@@ -315,21 +325,17 @@ export const generateDataForLines = function (linesObj) {
     lineKeys.push(lineKey)
     const lineObj = _.cloneDeep(linesObj[lineKey])
     const lineIdx = lineKeys.length - 1
-    console.log(lineObj, 'lineObj1')
-    // lineObj.nodes =
-    //   lineObj.edges && lineObj.edges.length
-    //     ? lineObj.nodes.filter(item => {
-    //         return lineObj.edges.some(
-    //           ({ source, target }) => item.id === source || item.id === target
-    //         )
-    //       })
-    //     : lineObj.nodes
+    lineObj.nodes = lineObj?.edges?.length
+      ? lineObj.nodes.filter((item) => {
+          return lineObj.edges.some(({ source, target }) => item.id === source || item.id === target)
+        })
+      : lineObj.nodes
 
-    // lineObj.edges = lineObj.edges.filter(({ source, target }) => {
-    //   const sourceFlag = lineObj.nodes.some(({ id }) => id === source)
-    //   const targetFlag = lineObj.nodes.some(({ id }) => id === target)
-    //   return sourceFlag && targetFlag
-    // })
+    lineObj.edges = lineObj.edges.filter(({ source, target }) => {
+      const sourceFlag = lineObj.nodes.some(({ id }) => id === source)
+      const targetFlag = lineObj.nodes.some(({ id }) => id === target)
+      return sourceFlag && targetFlag
+    })
     const pathsInResult = findPaths(lineObj)
 
     const pathObj = findLongestPathsInResult(pathsInResult)
@@ -340,13 +346,10 @@ export const generateDataForLines = function (linesObj) {
       }
     })
     // 处理nodes更新成一条主干线路 按照最长的路径生成主干节点数据
-    const mainDataNodes = longestPathIds.map(id => {
-      return lineObj.nodes.find(node => node.id === id)
+    const mainDataNodes = longestPathIds.map((id) => {
+      return lineObj.nodes.find((node) => node.id === id)
     })
-    const branchDataNodes = _.cloneDeep(
-      lineObj.nodes.filter(({ id }) => !longestPathIds.includes(id))
-    )
-    console.log(pathsInResult, pathObj, 'lineObj')
+    const branchDataNodes = _.cloneDeep(lineObj.nodes.filter(({ id }) => !longestPathIds.includes(id)))
 
     // 主干线路节点
     const mainNodes = []
@@ -371,10 +374,10 @@ export const generateDataForLines = function (linesObj) {
         lineNum: Number(lineKey), // 第几号线
         lineName: lineObj.serviceLineConfig.name,
         isBrancheNode: isBrancheNode,
-        isShowTooltip: point.isShow, // 现阶段所有节点都可点击
-        isShowNodeTip: point.isShowTooltip ? true : false,
-        type: isStartNode ? 'trueNode' : point.type === 'trueNode' ? 'trueNode' : 'pathNode',
-        lineDash: isStartNode ? [3, 2] : null
+        isShowNodeTip: point.isShowTooltip ?? true,
+        style: {
+          lineDash: isStartNode ? [3, 2] : null,
+        },
       }
     }
     /**
@@ -383,17 +386,19 @@ export const generateDataForLines = function (linesObj) {
     const getDefEdgeObj = (edgeData, isBranch, prevPoint) => {
       const color = edgeData.color || LINE_COLORS[lineIdx].color
       return {
+        ...edgeData,
         edgeId: edgeData.id,
-        edgeDataId: edgeData.id,
+        edgeData: edgeData,
         lineNum: Number(lineKey),
         lineName: lineObj.serviceLineConfig.name,
         lineColor: LINE_COLORS[lineIdx].color,
         color: color,
-        source: '',
-        target: '',
-        lineWidth: isBranch ? 3 : 5,
-        cursor: 'pointer',
-        lineDash: prevPoint?.isStartNode ? [3, 2] : null
+        style: {
+          lineWidth: isBranch ? 3 : 5,
+          color,
+          cursor: 'pointer',
+          lineDash: prevPoint.isStartNode ? [3, 2] : null,
+        },
       }
     }
     const { offsetX, offsetY } = checkStartPoint(mainPoints, linesOthInfo[lineKey].startXY)
@@ -405,11 +410,10 @@ export const generateDataForLines = function (linesObj) {
       const isStartNode = index === 0
       point.x = point.x + offsetX
       point.y = point.y + offsetY
-      // point.x = point.x + Math.abs(offsetX)
-      // 接上部分
-      point.y = point.y + Math.abs(offsetY)
-      point.offsetX = offsetX
-      point.offsetY = offsetY
+      point.offsets = {
+        x: offsetX,
+        y: offsetY,
+      }
       point.x = isStartNode ? point.x : point.x - xFactor * (rectWidth / 2)
       point.y = isStartNode ? point.y : point.y - yFactor * (rectHeight / 2)
       const label = isStartNode ? `${lineKey}.${lineObj.serviceLineConfig.name}` : point.label || ''
@@ -417,13 +421,14 @@ export const generateDataForLines = function (linesObj) {
       const prevDataId = lineObj.edges.find(({ source, target }) => target === point.dataId)?.source
       const nextDataId = lineObj.edges.find(({ source, target }) => source === point.dataId)?.target
       mainNodes.push({
+        ...point,
         ...getDefNodeObj(point, isStartNode, false),
         label,
         prevDataId,
         nextDataId,
         pathsData: { ...point },
-        shapeType: isStartNode ? 'trueNode' : point.type === 'trueNode' ? 'circle' : 'rect',
-        type: isStartNode ? 'trueNode' : point.type === 'trueNode' ? 'trueNode' : 'pathNode'
+        shapeType: isStartNode ? 'rect' : point.type === 'trueNode' ? 'circle' : 'rect',
+        type: isStartNode ? 'stationNode' : point.type === 'trueNode' ? 'stationNode' : 'pathNode',
       })
     })
     // 处理主干边
@@ -436,8 +441,8 @@ export const generateDataForLines = function (linesObj) {
         const isStationNode = node.type === 'stationNode'
         if (previousDataId) {
           if (!isStationNode) {
-            const stationNodes = mainNodes.filter(item => item.type === 'stationNode')
-            const tIdx = stationNodes.findIndex(item => item.dataId === previousDataId)
+            const stationNodes = mainNodes.filter((item) => item.type === 'stationNode')
+            const tIdx = stationNodes.findIndex((item) => item.dataId === previousDataId)
             targetDataId = stationNodes[tIdx + 1].dataId
             nextTrueNodeId = stationNodes[tIdx + 1].id
           } else {
@@ -445,11 +450,7 @@ export const generateDataForLines = function (linesObj) {
             nextTrueNodeId = node.id
           }
         }
-        edgeData = _.cloneDeep(
-          lineObj.edges.find(
-            ({ source, target }) => source === previousDataId && target === targetDataId
-          )
-        ) || { isShowTooltip: true }
+        edgeData = _.cloneDeep(lineObj.edges.find(({ source, target }) => source === previousDataId && target === targetDataId)) || { isShowTooltip: true }
 
         const prevPoint = mainNodes[index - 1]
         const nextPoint = mainNodes[index]
@@ -457,21 +458,19 @@ export const generateDataForLines = function (linesObj) {
         const edgeObj = {
           ...getDefEdgeObj(edgeData, false, prevPoint),
           pathsData: { useES: true, offsets: { x: 0, y: 0 }, prevPoint, nextPoint },
-          id: `${prevNode.id}-${nextPoint.id}`, // 66用于渲染逻辑
-          source: prevNode.id, // 66用于渲染逻辑
-          target: nextPoint.id, // 66用于渲染逻辑
-          dataId: `${prevNode.dataId} to ${targetDataId}`,
-          sourceDataId: prevNode.dataId, // 边链接的上一业务节点的id
-          previousTrueNodeId: prevNode.id, // 边链接的上一业务节点的id
+          id: `${previousNode.id}-${nextPoint.id}`, // 66用于渲染逻辑
+          source: previousNode.id, // 66用于渲染逻辑
+          target: node.id, // 66用于渲染逻辑
+          dataId: `${previousDataId} to ${targetDataId}`,
+          sourceDataId: previousDataId, // 边链接的上一业务节点的id
+          previousTrueNodeId: previousTrueNodeId, // 边链接的上一业务节点的id
           targetDataId: targetDataId, // 边链接的下一业务节点的id
-          nextTrueNodeId: nextPoint.id, // 边链接的下一业务节点的id
-          type:
-            node?.directiveObj?.directive?.toUpperCase() === 'C' || node.isBias
-              ? 'customEdge'
-              : 'baseEdge'
+          nextTrueNodeId: nextTrueNodeId, // 边链接的下一业务节点的id
+          type: node?.directiveObj?.directive?.toUpperCase() === 'C' || node.isBias ? 'customEdge' : 'baseEdge',
         }
         mainEdges.push(edgeObj)
         if (isStationNode) {
+          previousDataId = node.dataId
           previousTrueNodeId = node.id
         }
       }
@@ -484,9 +483,11 @@ export const generateDataForLines = function (linesObj) {
       // console.log(item.id, prevDataId, nextDataId)
       branchNodes.push({
         data: {
-          ...item
+          ...item,
         },
+        ...item,
         ...getDefNodeObj(item, false, true),
+        dataId: item.id,
         id: `${lineKey}-${item.id}`,
         prevId: prevDataId ? `${lineKey}-${prevDataId}` : null,
         prevDataId: prevDataId,
@@ -494,7 +495,7 @@ export const generateDataForLines = function (linesObj) {
         nextDataId: nextDataId,
         pathsData: { offsets: { x: 0, y: 0 } },
         shapeType: 'stationNode',
-        type: 'stationNode'
+        type: 'stationNode',
       })
     })
     /**
@@ -506,73 +507,59 @@ export const generateDataForLines = function (linesObj) {
     const loop = (doneNodes = [], beRelatNodes = [], doneDataIds = []) => {
       if (!beRelatNodes.length) return
       // 从已经完成的节点中寻找未完成的节点的关系
-      doneNodes.forEach(done => {
+      doneNodes.forEach((done) => {
         // 寻找和他有关联的节点
         const relatesDataIds = beRelatNodes
-          .filter(be => doneDataIds.includes(be.dataId))
-          .filter(be => be.prevDataId === done.dataId || be.nextDataId === done.dataId)
+          .filter((be) => !doneDataIds.includes(be.dataId))
+          .filter((be) => be.prevDataId === done.dataId || be.nextDataId === done.dataId)
+          .map((r) => r.dataId)
         // 先找到done的前一个点 和前一个确定走向
-        if (relatesDataIds.length) return
-        // const relateDoneNode = doneNodes.find((n) => n.dataId === done.prevDataId || n.dataId === done.nextDataId)
-        // console.log(relateDoneNode,'relateDoneNode',doneNodes,done)
-        if (!relatesDataIds.length) {
-          // 确认走向
-          const relateDoneNode = findValidPrevNode({
-            node: done,
-            prevNodes: doneNodes,
-            findRelate: true
-          })
-          // 计算坐标
-          // console.log('relateDoneNode', doneNodes, beRelatNodes)
-          beRelatNodes.forEach((r, index) => {
-            if (relatesDataIds.includes(r.dataId)) {
-              return
-            }
-            // 分支节点位置生成设计
-            const dis = 100 // 连线距离
-            const baseAngle = {
-              N: 90, // 北
-              S: 270, // 南
-              E: 0, // 东
-              W: 180, // 西
-              ES: 45, // 东南
-              WS: 135, // 西南
-              EN: 225, // 东北
-              WN: 90 // 西北
-            }
-            // 计算角度区间
-            const angleInterval = 45 // 45度一个区间
-            // 调整角度，避开主干节点的垂直方向
-            const startAngle = -35
-            const angle = baseAngle[direction] + startAngle - index * angleInterval
-            const newPos = calculateNewPosition(distance, angle)
-            // 新生成的节点坐标进行碰撞检测重新当
-            r.x = newPos.x
-            r.y = newPos.y
-            // console.log('r', 'r', r.x, r.y, done, index)
-            // doneDataIds.push(r.dataId)
-          })
-        }
+        if (!relatesDataIds.length) return
+        const prevRelateDoneNode = findValidPrevNode({ node: done, prevNodes: doneNodes, findRelate: true })
+        const direction = calculateDirection(prevRelateDoneNode, done)
+        // 计算坐标
+        beRelatNodes.forEach((r, index) => {
+          if (!relatesDataIds.includes(r.dataId)) {
+            return
+          }
+          // 分支节点位置生成设计
+          const distance = 100 // 连线距离
+          const baseAngle = {
+            N: 90, // 北
+            S: 270, // 南
+            E: 0, // 东
+            W: done?.extraInfo?.percent > 0.3 ? 360 : 180, // 西
+            ES: 45, // 东南
+            WS: 135, // 西南
+            EN: 225, // 东北
+            WN: 90, // 西北
+          }
+          // 计算角度区间
+          const angleInterval = 45 // 45度一个区间
+          // 调整角度，避开主干节点的垂直方向
+          const startAngle = 35
+          const angle = baseAngle[direction] + startAngle + index * angleInterval
+          const newPos = calculateNewCoordinate(done, distance, angle)
+          console.log('newPos', newPos)
+          r.x = newPos.x
+          r.y = newPos.y
+        })
         // 处理完后继续递归处理 直到都设置好坐标
-        const newDone = beRelatNodes.filter(r => relatesDataIds.includes(r.dataId))
-        const nextBeRelatNodes = beRelatNodes.filter(r => !relatesDataIds.includes(r.dataId))
-        doneDataIds = [...doneDataIds, ...relatesDataIds]
-        loop(...doneNodes, ...newDone, nextBeRelatNodes, doneDataIds)
+        const newDone = beRelatNodes.filter((r) => relatesDataIds.includes(r.dataId))
+        const nextBeRelatNodes = beRelatNodes.filter((r) => !relatesDataIds.includes(r.dataId))
+        doneDataIds.push(...relatesDataIds)
+        loop([...doneNodes, ...newDone], nextBeRelatNodes, doneDataIds)
       })
     }
-    const doneDataIds = mainNodes.map(m => m.dataId)
+    const doneDataIds = mainNodes.map((m) => m.dataId)
     loop(mainNodes, branchNodes, doneDataIds)
     // 处理分支边
     // 在后端返回的数据中排除掉已经处理好的主干边，剩下的即分支相关的边
-    const branchNodesDataIds = branchNodes.map(b => b.dataId)
-    const bnEdges = lineObj.edges.filter(
-      e => branchNodesDataIds.includes(e.source) || branchNodesDataIds.includes(e.target)
-    )
-    bnEdges.forEach(edge => {
-      const prevPoint = mainNodes.find(n => n.dataId === edge.source) ||
-        branchNodes.find(n => n.dataId === edge.source) || { x: 0, y: 0 }
-      const nextPoint = mainNodes.find(n => n.dataId === edge.target) ||
-        branchNodes.find(n => n.dataId === edge.target) || { x: 0, y: 0 }
+    const branchNodesDataIds = branchNodes.map((b) => b.dataId)
+    const bnEdges = lineObj.edges.filter((e) => branchNodesDataIds.includes(e.source) || branchNodesDataIds.includes(e.target))
+    bnEdges.forEach((edge) => {
+      const prevPoint = mainNodes.find((n) => n.dataId === edge.source) || branchNodes.find((n) => n.dataId === edge.source) || { x: 0, y: 0 }
+      const nextPoint = mainNodes.find((n) => n.dataId === edge.target) || branchNodes.find((n) => n.dataId === edge.target) || { x: 0, y: 0 }
       const edgeObj = {
         ...getDefEdgeObj(edge, true, prevPoint),
         pathsData: { useES: true, offsets: { x: 0, y: 0 }, prevPoint, nextPoint },
@@ -584,17 +571,22 @@ export const generateDataForLines = function (linesObj) {
         previousTrueNodeId: prevPoint.id, // 边链接的上一业务节点的id
         targetDataId: nextPoint.dataId, // 边链接的下一业务节点的id
         nextTrueNodeId: nextPoint.id, // 边链接的下一业务节点的id
-        type: 'baseEdge'
+        type: 'baseEdge',
       }
       branchEdges.push(edgeObj)
     })
     edges.push(...mainEdges, ...branchEdges)
     nodes.push(...mainNodes, ...branchNodes)
   }
-  const adjustXY = 2
+  // console.log(nodes)
+  // console.log(edges)
   // 处理通用数据
-  // 按照序号顺序来处理
-  nodes.forEach(node => {
+  nodes.forEach((node) => {
+    // 按照序号顺序来处理
+    const { isBrancheNode, nodeSize, isStartNode, nextId, prevId, label, shapeType, lineNum } = node
+    node.isLastNode = (!nextId || !prevId) && !isStartNode
+  })
+  nodes.forEach((node) => {
     const { isStartNode, isLastNode, isBrancheNode, nextId, prevId, extraInfo, lineNum } = node
     // 节点检验位置调整
     if ((nextId || prevId) && !isStartNode) {
@@ -603,13 +595,13 @@ export const generateDataForLines = function (linesObj) {
         times++
         let needLoop = false
         // 处理主干节点的碰撞
-        const mainLastNodes = nodes.filter(n => !n.isLastNode && n.isBrancheNode)
-        nodes.forEach(node => {
+        const mainLastNodes = nodes.filter((n) => !n.isLastNode && n.isBrancheNode)
+        nodes.forEach((node) => {
           const { isBrancheNode, isStartNode, isLastNode, type, x, y, extraInfo } = node
           const { prev, distance, i } = extraInfo || {}
           if (isBrancheNode && !isStartNode && !isLastNode && type === 'stationNode' && prev) {
             // 判断这个点是否有冲突了
-            mainLastNodes.forEach(m => {
+            mainLastNodes.forEach((m) => {
               // extraInfo
               const { x, y } = m
               const dis = calculateDistance({ x, y }, m)
@@ -624,15 +616,15 @@ export const generateDataForLines = function (linesObj) {
           }
         })
         // 处理主干中间节点的碰撞，一条一条线路来处理，已经处理过的则不能再被修改
-        lineKeys.forEach(num => {
-          const lineNodes = nodes.filter(n => n.lineNum === num)
-          const othNodes = nodes.filter(n => n.lineNum !== num)
-          lineNodes.forEach(node => {
+        lineKeys.forEach((num) => {
+          const lineNodes = nodes.filter((n) => n.lineNum === num)
+          const othNodes = nodes.filter((n) => n.lineNum !== num)
+          lineNodes.forEach((node) => {
             const { isBrancheNode, isStartNode, isLastNode, type, x, y, extraInfo } = node
             const { prev, distance, i } = extraInfo || {}
             // 都当前点和其他未被处理 的线路的点进行比较
             if (isBrancheNode && !isStartNode && !isLastNode && type === 'stationNode') {
-              othNodes.forEach(n => {
+              othNodes.forEach((n) => {
                 const { x, y } = n
                 const dis = calculateDistance({ x, y }, n)
                 if (dis < 25) {
@@ -648,22 +640,16 @@ export const generateDataForLines = function (linesObj) {
         })
         // 处理节点和路线画线的碰撞
         // 取出所有的坐标点
-        lineKeys.forEach(num => {
-          const lineNodes = nodes.filter(n => n.lineNum === num)
-          const othNodes = nodes.filter(n => n.lineNum !== num)
-          lineNodes.forEach(node => {
+        lineKeys.forEach((num) => {
+          const lineNodes = nodes.filter((n) => n.lineNum === num)
+          const othNodes = nodes.filter((n) => n.lineNum !== num)
+          lineNodes.forEach((node) => {
             const { isBrancheNode, isStartNode, isLastNode, type, x, y, extraInfo, id } = node
-            const prevNode = lineNodes.find(n => n.nextId === node.id)
+            const prevNode = lineNodes.find((n) => n.nextId === node.id)
             const { prev, distance, i } = extraInfo || {}
-            if (
-              isBrancheNode &&
-              !isStartNode &&
-              !isLastNode &&
-              type === 'stationNode' &&
-              !prevNode.isStartNode
-            ) {
-              const a = lineNodes.find(n => n.nextId === node.id || n.id === node.prevId)
-              const b = othNodes.find(n => n.id === a.nextId || n.id === a.prevId)
+            if (isBrancheNode && !isStartNode && !isLastNode && type === 'stationNode' && !prevNode.isStartNode) {
+              const a = lineNodes.find((n) => n.nextId === node.id || n.id === node.prevId)
+              const b = othNodes.find((n) => n.id === a.nextId || n.id === a.prevId)
               if (b && b.id && a && a.id) {
                 const CE = calculateSegmentDistances(a, b, prevNode)
                 const ED = calculateSegmentDistances(b, a, prevNode)
@@ -688,12 +674,10 @@ export const generateDataForLines = function (linesObj) {
     }
   })
   // 全部的节点确定坐标后，处理节点的文字位置
-  nodes.forEach(node => {
+  nodes.forEach((node) => {
     if (node.label !== '') {
-      const lineNumNodes = nodes.filter(n => n.lineNum === node.lineNum)
-      const prevNode = !node.isStartNode
-        ? findValidPrevNode({ node, prevNodes: lineNumNodes, findRelate: true })
-        : {}
+      const lineNumNodes = nodes.filter((n) => n.lineNum === node.lineNum)
+      const prevNode = !node.isStartNode ? findValidPrevNode({ node, prevNodes: lineNumNodes, findRelate: true }) : {}
       node.textAttrs = calculateTextAttrs({ node, prevNode, lineNumNodes, nodes })
     }
   })

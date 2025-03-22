@@ -71,7 +71,7 @@ const linesOthInfo = {
  * @returns
  */
 function reverseSvgPath(d) {
-  const parseCommands = d => {
+  const parseCommands = (d) => {
     const commandRegex = /([A-Z])\s*((?:-?\d*\.?\d+\s*)+)/gi
     const commands = []
     let match
@@ -80,17 +80,17 @@ function reverseSvgPath(d) {
       const args = match[2]
         .trim()
         .split(/[\s,]+/)
-        .filter(x => x)
+        .filter((x) => x)
         .map(Number)
       commands.push({ type, args })
     }
     return commands
   }
 
-  const toAbsolute = commands => {
+  const toAbsolute = (commands) => {
     let x = 0
     let y = 0
-    return commands.map(cmd => {
+    return commands.map((cmd) => {
       let absCmd
       switch (cmd.type) {
         case 'M':
@@ -276,52 +276,52 @@ function parsePathCommands(d, convertToRelative = false) {
 }
 // 从SVG内容中提取pathsData
 function extractPathsData(svgContent, reverse) {
-    const pathRegex = /<path[^>]*d="([^"]*)"/gi
-    let match
-    const pathsData = []
-    while ((match = pathRegex.exec(svgContent))) {
-        let d = match[1]
-        if (reverse) {
-            d = reverseSvgPath(d)
-        }
-        const commands = parsePathCommands(d)
-        pathsData.push(commands)
+  const pathRegex = /<path[^>]*d="([^"]*)"/gi
+  let match
+  const pathsData = []
+  while ((match = pathRegex.exec(svgContent))) {
+    let d = match[1]
+    if (reverse) {
+      d = reverseSvgPath(d)
     }
-    return pathsData
+    const commands = parsePathCommands(d)
+    pathsData.push(commands)
+  }
+  return pathsData
 }
 
 function extractColor(svgContent) {
-    // 使用正则表达式提取 stroke 属性的颜色值
-    const strokeRegex = /stroke="([^"]*)"/
-    const match = svgContent.match(strokeRegex)
-    if (match) {
-        const strokeColor = match[1]
-        return strokeColor
-    } else {
-        return '#fff'
-    }
+  // 使用正则表达式提取 stroke 属性的颜色值
+  const strokeRegex = /stroke="([^"]*)"/
+  const match = svgContent.match(strokeRegex)
+  if (match) {
+    const strokeColor = match[1]
+    return strokeColor
+  } else {
+    return '#fff'
+  }
 }
 
 // 主函数
 async function generatePathsFile() {
-    try {
-        const linesInfoObj = {}
-        for (const key in svgs) {
-            const svgData = svgs[key]
-            const pathsData = extractPathsData(svgData, linesOthInfo[key].reverse)
-            const pathColor = extractColor(svgData)
-            linesInfoObj[key] = {
-                pathsArr: pathsData.flat(),
-                color: pathColor,
-            }
-        }
-        const pathsFilePath = path.join(__dirname, 'linesInfo.js')
-        const fhsContent = `export default ${JSON.stringify(linesInfoObj, null, 2)};`
-        await fs.promises.writeFile(pathsFilePath, fhsContent, 'utf-8')
-        console.log('Paths file generated successfully.')
-    } catch (error) {
-        console.error('Error generating paths file:', error)
+  try {
+    const linesInfoObj = {}
+    for (const key in svgs) {
+      const svgData = svgs[key]
+      const pathsData = extractPathsData(svgData, linesOthInfo[key].reverse)
+      const pathColor = extractColor(svgData)
+      linesInfoObj[key] = {
+        pathsArr: pathsData.flat(),
+        color: pathColor,
+      }
     }
+    const pathsFilePath = path.join(__dirname, 'linesInfo.js')
+    const fhsContent = `export default ${JSON.stringify(linesInfoObj, null, 2)};`
+    await fs.promises.writeFile(pathsFilePath, fhsContent, 'utf-8')
+    console.log('Paths file generated successfully.')
+  } catch (error) {
+    console.error('Error generating paths file:', error)
+  }
 }
 // 运行主函数
 generatePathsFile()

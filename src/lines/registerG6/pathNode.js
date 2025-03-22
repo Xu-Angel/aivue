@@ -9,11 +9,11 @@ export default function () {
           y: 0,
           width: 0,
           height: 0,
-          radius: 0
+          radius: 0,
         },
         // must be assigned in G6 3.3 and later versions. it can be any string you want, but should be unique in a custom item type
         name: 'path-node',
-        draggable: false
+        draggable: false,
       })
       // 文字描述
       // group.addShape('text', {
@@ -32,6 +32,6 @@ export default function () {
 
       group.sort()
       return shape
-    }
+    },
   })
 }

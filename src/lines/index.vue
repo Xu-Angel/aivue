@@ -4,44 +4,24 @@
       'is-fullscreen': isFullScreen,
       'is-empty': isEmpty,
       'is-show-map': isShowMap,
-      isShowFilter: true
     }"
     class="subway-topo"
-    ref="topology"
-  >
+    ref="topology">
     <div v-loading="loading" class="g6-container" id="g6Container" ref="g6Container"></div>
 
     <div class="empty-chart"></div>
     <div class="tools-container" ref="tools" v-if="configTools.length">
       <ul>
-        <li
-          v-if="configTools.includes('zoomIn')"
-          title="放大"
-          @click="handleToolbarClick('zoomIn')"
-        >
+        <li v-if="configTools.includes('zoomIn')" title="放大" @click="handleToolbarClick('zoomIn')">
           <i class="iconfont iconfangda"></i>
         </li>
-        <li
-          v-if="configTools.includes('zoomOut')"
-          title="缩小"
-          @click="handleToolbarClick('zoomOut')"
-        >
+        <li v-if="configTools.includes('zoomOut')" title="缩小" @click="handleToolbarClick('zoomOut')">
           <i class="iconfont iconsuoxiao1"></i>
         </li>
-        <li
-          v-if="configTools.includes('fullscreen')"
-          class="fullscreen"
-          :title="this.isFullScreen ? '退出全屏' : '全屏'"
-          @click="handleToolbarClick('fullscreen')"
-        >
+        <li v-if="configTools.includes('fullscreen')" class="fullscreen" :title="this.isFullScreen ? '退出全屏' : '全屏'" @click="handleToolbarClick('fullscreen')">
           <i></i>
         </li>
-        <li
-          v-if="configTools.includes('center')"
-          class="center"
-          title="画布中心"
-          @click="handleToolbarClick('center')"
-        >
+        <li v-if="configTools.includes('center')" class="center" title="画布中心" @click="handleToolbarClick('center')">
           <i></i>
         </li>
         <template v-if="configTools.includes('map')">
@@ -66,22 +46,17 @@ import _ from 'lodash'
 export default {
   props: {
     lineData: {
-      type: Object
+      type: Object,
     },
     // 底部右侧工具栏
     configTools: {
       type: Array,
-      default: () => ['center', 'zoomIn', 'zoomOut', 'fullscreen', 'map']
-    },
-    hasMinimap: {
-      // 是否展示缩略图
-      type: Boolean,
-      default: true
+      default: () => ['center', 'zoomIn', 'zoomOut', 'fullscreen', 'map'],
     },
     hasAbnormalLine: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {},
   data() {
@@ -100,15 +75,15 @@ export default {
       g6Data: null,
       tooltipShow: false,
       tooltipData: {},
-      activedNode: null
+      activedNode: null,
     }
   },
   watch: {
     zoom: {
       async handler(val, oval) {
         this.setZoomFontSize()
-      }
-    }
+      },
+    },
   },
   created() {
     registerG6()
@@ -121,7 +96,7 @@ export default {
       const parentEl = this.$refs.topology
       this.topologyOffset = {
         width: parentEl.offsetWidth,
-        height: parentEl.offsetHeight
+        height: parentEl.offsetHeight,
       }
       this.onListeningResize()
       window.addEventListener('mouseup', this.handleMouseup)
@@ -138,7 +113,7 @@ export default {
     async setZoomFontSize() {
       this.isManual = true
       await this.$nextTick()
-      const lineNums = [...new Set(this.g6Data.nodes.map(node => node.lineNum))]
+      const lineNums = [...new Set(this.g6Data.nodes.map((node) => node.lineNum))]
       const singleLine = lineNums.length === 1
       // 监听缩放事件
       const zoom = this.zoom
@@ -159,7 +134,7 @@ export default {
         fontSize = singleLine ? 28 : 20
       }
       const data = JSON.parse(JSON.stringify(this.g6Data))
-      data.nodes.forEach(node => {
+      data.nodes.forEach((node) => {
         if (node?.textAttrs?.fontSize) {
           node.textAttrs.fontSize = fontSize
         }
@@ -176,14 +151,14 @@ export default {
       const parentEl = this.$refs.topology
       this.topologyOffset = {
         width: parentEl.offsetWidth,
-        height: parentEl.offsetHeight
+        height: parentEl.offsetHeight,
       }
       const graph = new G6.Graph({
         container: this.$refs.g6Container,
         width: parentEl.offsetWidth,
         height: parentEl.offsetHeight,
         background: {
-          color: '#f5f5f5'
+          color: '#f5f5f5',
         },
         layout: {
           getTopoInstance: () => {
@@ -191,56 +166,54 @@ export default {
           },
           onLayoutEnd: () => {
             this.loading = false
-          }
+          },
         },
         modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'click-select']
+          default: ['drag-canvas', 'zoom-canvas', 'click-select'],
         },
         nodeDraggable: false, // 启用节点拖动
         // 节点配置
-        fitView: true,
-        renderer: 'svg',
         minZoom: this.minZoom,
         maxZoom: this.maxZoom,
         defaultNode: {
           labelCfg: {
             position: 'bottom',
             style: {
-              fill: '#666'
-            }
-          }
+              fill: '#666',
+            },
+          },
         },
         // 线条配置
         defaultEdge: {
           style: {
-            cursor: 'pointer'
-          }
+            cursor: 'pointer',
+          },
         },
         /* 不同状态下节点的样式 */
         nodeStateStyles: {
           highlight: {
             'node-highlight': {
-              opacity: 1
-            }
+              opacity: 1,
+            },
           },
           dark: {
             opacity: 0.2,
-            strokeOpacity: 0.2
-          }
+            strokeOpacity: 0.2,
+          },
         },
         /* 不同状态下边的样式 */
         edgeStateStyles: {
           highlight: {
             opacity: 1,
             strokeOpacity: 1,
-            fillOpacity: 1
+            fillOpacity: 1,
           },
           dark: {
             opacity: 0.2,
             strokeOpacity: 0.2,
-            fillOpacity: 0.2
-          }
-        }
+            fillOpacity: 0.2,
+          },
+        },
       })
       graph.on('canvas:click', () => {
         this.hoverEdge = true
@@ -264,11 +237,11 @@ export default {
         setHighlight.call(this, graph, item)
         this.hoverEdge = false
         // 高亮线路
-        const edgeItem = this.g6Data.edges.find(edge => edge.lineNum === this.activedNode.lineNum)
+        const edgeItem = this.g6Data.edges.find((edge) => edge.lineNum === this.activedNode.lineNum)
         this.setOneLineEdgeHighlight(edgeItem.id)
         // 高亮节点赋值，触发节点事件
         this.$emit('clickNode', {
-          ...item.getModel()
+          ...item.getModel(),
         })
       })
       graph.on('edge:click', ({ item }) => {
@@ -284,21 +257,21 @@ export default {
           ...edgeData,
           isSection: true,
           sourceNode,
-          targetNode
+          targetNode,
         }
         this.$emit('clickEdge', edgeData)
       })
       // 监听缩放事件
-      graph.on('wheelzoom', e => {
+      graph.on('wheelzoom', (e) => {
         this.zoom = this.graph.getZoom()
       })
-      graph.on('afterrenderer', e => {
+      graph.on('afterrenderer', (e) => {
         console.log('afterrenderer')
         // 因为根据设备字体尺寸等 所以触发渲染之后再进行缩放
         if (!this.isManual) {
           // 初始化缩放设置四个方向上的间距值
           this.graph.fitView([this.hasAbnormalLine ? 50 : 10, 50, 10, 10], {
-            onlyOutOfViewport: true
+            onlyOutOfViewport: true,
           })
           this.zoom = this.graph.getZoom()
           setTimeout(() => {
@@ -321,12 +294,12 @@ export default {
     },
     transformData(data) {
       return {
-        nodes: data.nodes.map(node => {
+        nodes: data.nodes.map((node) => {
           return {
-            ...node
+            ...node,
           }
         }),
-        edges: data.edges
+        edges: data.edges,
       }
     },
     /* 高亮整条线路 */
@@ -389,13 +362,13 @@ export default {
     },
     onListeningResize() {
       this.resizeObserver = new ResizeObserver(
-        _.debounce(entries => {
+        _.debounce((entries) => {
           this.$refs.topology && this.resizeCanvas()
         }, 100)
       )
       this.resizeObserver.observe(this.$refs.topology)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="less" scoped>
@@ -403,27 +376,27 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  /* background-color: #f7f9fb; */
+  // background-color: #f7f9fb;
   user-select: none;
-  background-image: radial-gradient(#eef4f8 8%, transparent 0);
+  background-image: radial-gradient(#e8eef4 8%, transparent 0);
   background-size: 14px 14px, 14px 14px;
   background-color: #f4f7fa;
-  .is-fullscreen {
+  &.is-fullscreen {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
-    z-index: 1000;
+    height: 100% !important;
+    z-index: 100;
     .legend {
       bottom: 51px;
     }
   }
-  .is-empty {
+  &.is-empty {
     .empty-chart {
       display: block;
     }
-    .tools-container {
+    .tools-contaniner {
       display: none;
     }
     .top-tools {
@@ -436,7 +409,7 @@ export default {
       display: none !important;
     }
   }
-  .is-show-map {
+  &.is-show-map {
     .g6-minimap {
       display: block;
     }
@@ -449,14 +422,14 @@ export default {
     background: #fff;
     border-radius: 4px;
   }
-  .tools-container {
+  .tools-contaniner {
     position: absolute;
     right: 15px;
     bottom: 15px;
     z-index: 2;
     background: #ffffff;
     border-radius: 4px;
-    /* box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1); */
+    // box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
     ul {
       position: static;
       width: 36px;
@@ -487,31 +460,32 @@ export default {
             color: #3f92fe;
           }
         }
-        .center {
+        &.center {
           i {
-            background: black;
+            background: url('./assets/img/center.svg');
           }
         }
-        .fullscreen {
+        &.fullscreen {
           i {
-            background: yellow;
+            background: url('./assets/img/fullscreen.svg');
           }
         }
-        .fruchterman {
+        &.fruchterman {
           i {
-            background: yellow;
+            background: url('./assets/img/default-layout.svg');
           }
         }
-        .tree-top {
+        &.tree-top {
           i {
-            background: red;
+            background: url('./assets/img/tree-layout.svg');
           }
         }
-        .tree-left {
+        &.tree-left {
           i {
-            background: green;
+            background: url('./assets/img/tree-layout-left.svg');
           }
         }
+
         &:hover {
           i {
             transform: translateY(-36px);
@@ -520,28 +494,28 @@ export default {
         }
       }
     }
-  }
-  .center-btn {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    background: #fff;
-    cursor: pointer;
-    font-weight: 600;
-    overflow: hidden;
-    i {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      background: red;
-    }
-    &:hover {
+    .center-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      overflow: hidden;
       i {
-        transform: translateY(-36px);
-        filter: drop-shadow(#3f92fe 0 36px);
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: url('./assets/img/center.svg');
+      }
+      &:hover {
+        i {
+          transform: translateY(-36px);
+          filter: drop-shadow(#3f92fe 0 36px);
+        }
       }
     }
   }
@@ -549,14 +523,13 @@ export default {
     position: relative;
     z-index: 1;
     height: 100%;
-    background-color: #f4f7fa;
-  }
-  .g6-grid-container {
-    background-color: #f4f7fa;
-  }
-  canvas {
-    /* 这个必须加，不然canvas高度不一致导致每次高度变化后，又触发高度计算死循环 */
-    display: block;
+    .g6-grid-container {
+      background-color: #f4f7fa;
+    }
+    canvas {
+      // 这个必须加，不然canvas高度不一致导致每次高度变化后，又触发高度计算死循环
+      display: block;
+    }
   }
   .g6-component-tooltip {
     position: relative;
@@ -569,6 +542,7 @@ export default {
     border: none;
     z-index: 3;
   }
+
   .empty-chart {
     display: none;
     position: absolute;
@@ -578,6 +552,7 @@ export default {
     top: 50%;
     z-index: 10;
     transform: translate(-50%, -50%);
+    background-image: url('~@/assets/img/no-data.png');
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }

@@ -8,7 +8,7 @@ export const circleSize = 16
 // 路线颜色
 const colors = Object.entries(linesInfo).map(([key, value]) => value.color)
 
-export const LINE_COLORS = colors.map(item => {
+export const LINE_COLORS = colors.map((item) => {
   return {
     color: item,
     backgroundColor: hexToRgba(item, 0.1),

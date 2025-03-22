@@ -9,7 +9,7 @@ import { rectWidth, rectHeight } from './const'
  * @returns {Object} 有效的前一个节点
  */
 export function findValidPrevNode({ node, prevNodes, findRelate = false }) {
-  const prevNode = prevNodes.find(n => n.id === node.prevId || (findRelate && n.id === node.nextId))
+  const prevNode = prevNodes.find((n) => n.id === node.prevId || (findRelate && n.id === node.nextId))
   if (!prevNode) {
     return null // 如果没有前驱节点，返回 null
   }
@@ -31,7 +31,7 @@ export function findValidPrevNode({ node, prevNodes, findRelate = false }) {
  * @returns {Object} 有效的后一个节点
  */
 export function findValidNextNode({ node, nextNodes, findRelate = false }) {
-  const nextNode = nextNodes.find(n => n.id === node.nextId || (findRelate && n.id === node.prevId))
+  const nextNode = nextNodes.find((n) => n.id === node.nextId || (findRelate && n.id === node.prevId))
   if (!nextNode) {
     return null // 如果没有前驱节点，返回 null
   }
@@ -85,7 +85,7 @@ export function getExtendedPoint(p1, p2, distance) {
   return {
     x,
     y,
-    precent: extended / total
+    precent: extended / total,
   }
 }
 
@@ -166,7 +166,7 @@ export function calculateSegmentDistances(A, B, C, D) {
   }
   return {
     ED: calculateDistance(E, D),
-    CE: calculateDistance(C, E)
+    CE: calculateDistance(C, E),
   }
 }
 
@@ -193,7 +193,7 @@ export function calculateSegmentExtension(A, B, C, D) {
   const t = ((C.x - A.x) * (B.y - A.y) + (A.y - C.y) * (B.x - A.x)) / denominator
   const E = {
     x: C.x + t * (D.x - C.x),
-    y: C.y + t * (D.y - C.y)
+    y: C.y + t * (D.y - C.y),
   }
 
   // 判断交点是否在线段CD上（第四阶段：交点位置判断 网页3[3](@ref)的范围检测法）
@@ -209,7 +209,7 @@ export function calculateSegmentExtension(A, B, C, D) {
     // 单位向量
     const unitCD = {
       x: vecCD.x / vecCDLength,
-      y: vecCD.y / vecCDLength
+      y: vecCD.y / vecCDLength,
     }
 
     // 投影长度计算（网页6[6](@ref)的公式变体）
@@ -218,7 +218,7 @@ export function calculateSegmentExtension(A, B, C, D) {
     return {
       type: 'extended',
       distance: extendDistance,
-      point: E
+      point: E,
     }
   }
 }
@@ -302,7 +302,7 @@ export function genPointpos({ target, prev, t }) {
     x,
     y,
     isBias,
-    dir
+    dir,
   }
 }
 
@@ -364,7 +364,7 @@ export function findBestAnchorPoint(source, target) {
     ES: [1, 0.5], // 东南
     WS: [0, 0.5], // 西南
     WN: [0, 0.5], // 西北
-    EN: [0, 0.5] // 东北
+    EN: [0, 0.5], // 东北
   }
   // 获取最佳锚点
   return directionToAnchorMap[direction] || []
@@ -393,7 +393,7 @@ export function findPaths(data) {
   const paths = {}
 
   // 构建邻接表
-  data.edges.forEach(edge => {
+  data.edges.forEach((edge) => {
     if (!graph[edge.source]) {
       graph[edge.source] = []
     }
@@ -402,7 +402,7 @@ export function findPaths(data) {
 
   // 深度优先搜索函数
   function dfs(nodeId, currentPath) {
-    const node = data.nodes.find(n => n.id === nodeId)
+    const node = data.nodes.find((n) => n.id === nodeId)
     const newPath = [...currentPath, node.id]
 
     // 记录路径
@@ -415,7 +415,7 @@ export function findPaths(data) {
     }
 
     // 遍历所有子节点
-    graph[node.id].forEach(neighborId => {
+    graph[node.id].forEach((neighborId) => {
       if (!currentPath.includes(neighborId)) {
         // 防止环
         dfs(neighborId, newPath)
@@ -424,7 +424,7 @@ export function findPaths(data) {
   }
 
   // 从每个节点开始DFS
-  data.nodes.forEach(node => {
+  data.nodes.forEach((node) => {
     if (!paths[node.id]) {
       // 只对未记录路径的节点执行DFS
       dfs(node.id, [])
@@ -456,19 +456,13 @@ export function checkStartPoint(points = [], startXY = {}) {
     return { offsetX: 0, offsetY: 0 }
   }
   const firstPoint = points[0]
-  if (
-    !firstPoint ||
-    typeof firstPoint.x === 'undefined' ||
-    typeof firstPoint.y === 'undefined' ||
-    typeof startXY.x === 'undefined' ||
-    typeof startXY.y === 'undefined'
-  ) {
+  if (!firstPoint || typeof firstPoint.x === 'undefined' || typeof firstPoint.y === 'undefined' || typeof startXY.x === 'undefined' || typeof startXY.y === 'undefined') {
     return { offsetX: 0, offsetY: 0 }
   }
   const offsetX = startXY.x - firstPoint.x
   const offsetY = startXY.y - firstPoint.y
   return {
     offsetX, // 水平偏差值
-    offsetY // 垂直偏差值
+    offsetY, // 垂直偏差值
   }
 }

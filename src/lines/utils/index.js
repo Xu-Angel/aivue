@@ -13,14 +13,11 @@ export function fittingString(str, maxWidth, fontSize = 12, singleline = false) 
       currentWidth += fontSize
     } else {
       // get the width of single letter according to the fontSize
-      currentWidth += G6.Util.getTextWidth(letter, fontSize)
+      currentWidth += G6.Util.getLetterWidth(letter, fontSize)
     }
     if (currentWidth > maxWidth) {
       const line1 = str.substr(0, i)
-      const line2 =
-        str.substr(i).length > line1.length
-          ? str.substr(i, line1.length - 3) + ellipsis
-          : str.substr(i)
+      const line2 = str.substr(i).length > line1.length ? str.substr(i, line1.length - 3) + ellipsis : str.substr(i)
       res = singleline ? `${line1}${ellipsis}` : `${line1}\n${line2}`
     }
   })
@@ -38,10 +35,10 @@ export const setHighlight = function (graph, item) {
 }
 // 清空状态
 // 点击线操作，高亮整条线路和节点
-export const setEdgeHightlight = (graph, item) => {
+export const setEdgeHighlight = (graph, item) => {
   const model = item.getModel()
   const highLightNodes = []
-  graph.getEdges().forEach(edge => {
+  graph.getEdges().forEach((edge) => {
     graph.clearItemStates(edge)
     const data = edge.getModel()
     if (data.lineNum === model.lineNum) {
@@ -51,7 +48,7 @@ export const setEdgeHightlight = (graph, item) => {
       graph.setItemState(edge, 'dark', true)
     }
   })
-  graph.getNodes().forEach(node => {
+  graph.getNodes().forEach((node) => {
     graph.clearItemStates(node)
     const data = node.getModel()
     if (highLightNodes.some(({ id }) => id === data.id)) {
@@ -72,7 +69,7 @@ export const setSomeEdgeHighlight = (graph, edgeInstance) => {
 
   const nextTrueNodeId = model.nextTrueNodeId
   const previousTrueNodeId = model.previousTrueNodeId
-  graph.getEdges().forEach(edge => {
+  graph.getEdges().forEach((edge) => {
     graph.clearItemStates(edge)
     const data = edge.getModel()
     if (data.lineNum === model.lineNum) {
@@ -85,7 +82,7 @@ export const setSomeEdgeHighlight = (graph, edgeInstance) => {
       graph.setItemState(edge, 'dark', true)
     }
   })
-  graph.getNodes().forEach(node => {
+  graph.getNodes().forEach((node) => {
     graph.clearItemStates(node)
     graph.setItemState(node, 'dark', true)
     const data = node.getModel()
@@ -114,7 +111,7 @@ export const clearAllState = (graph, isClearAll = false) => {
   graph.getEdges().forEach(function (edge) {
     graph.clearItemStates(edge)
   })
-  graph.getCombos().forEach(combo => {
+  graph.getCombos().forEach((combo) => {
     graph.clearItemStates(combo)
   })
   graph.paint()
@@ -126,28 +123,28 @@ export function handleHighlightNodes(highlightData, hoverEdge = false) {
   const graph = this.graph
   graph.setAutoPaint(false)
   const { nodes, edges } = highlightData
-  graph.getNodes().forEach(node => {
+  graph.getNodes().forEach((node) => {
     const data = node.getModel()
     graph.clearItemStates(node)
-    if (nodes.some(v => v.id === data.id)) {
+    if (nodes.some((v) => v.id === data.id)) {
       graph.setItemState(node, 'highlight', true)
     } else {
       graph.setItemState(node, 'dark', true)
     }
   })
 
-  graph.getEdges().forEach(edge => {
+  graph.getEdges().forEach((edge) => {
     graph.clearItemStates(edge)
     const data = edge.getModel()
-    if (edges.some(v => v.source === data.source && v.target === data.target)) {
+    if (edges.some((v) => v.source === data.source && v.target === data.target)) {
       graph.updateItem(edge, {
         label: data.highlightText || '',
         labelCfg: {
           style: {
             ...(data.labelCfg?.style || {}),
-            opacity: 1
-          }
-        }
+            opacity: 1,
+          },
+        },
       })
       graph.setItemState(edge.getTarget(), 'dark', false)
       graph.setItemState(edge.getSource(), 'dark', false)
@@ -158,18 +155,18 @@ export function handleHighlightNodes(highlightData, hoverEdge = false) {
         labelCfg: {
           style: {
             ...(data.labelCfg?.style || {}),
-            opacity: 0.2
-          }
-        }
+            opacity: 0.2,
+          },
+        },
       })
       graph.setItemState(edge, 'highlight', false)
       graph.setItemState(edge, 'dark', true)
     }
   })
 
-  graph.getCombos().forEach(combo => {
+  graph.getCombos().forEach((combo) => {
     graph.clearItemStates(combo)
-    if (!nodes.some(v => v.comboId === combo.getModel().id)) {
+    if (!nodes.some((v) => v.comboId === combo.getModel().id)) {
       graph.setItemState(combo, 'dark', true)
     }
   })
