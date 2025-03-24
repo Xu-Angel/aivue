@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('./iconfont.woff2') format('woff2'),
+       url('./iconfont.woff') format('woff'),
+       url('./iconfont.ttf') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconfangda:before {
+  content: "\e6cc";
+}
+
+.iconsuoxiao1:before {
+  content: "\e6cd";
+}
+
+.iconlianludu:before {
+  content: "\e6ce";
+}

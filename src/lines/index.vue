@@ -13,10 +13,10 @@
     <div class="tools-container" ref="tools" v-if="configTools.length">
       <ul>
         <li v-if="configTools.includes('zoomIn')" title="放大" @click="handleToolbarClick('zoomIn')">
-          <i class="iconfont iconfangda"></i>
+          <span>+</span>
         </li>
         <li v-if="configTools.includes('zoomOut')" title="缩小" @click="handleToolbarClick('zoomOut')">
-          <i class="iconfont iconsuoxiao1"></i>
+          <span>-</span>
         </li>
         <li v-if="configTools.includes('fullscreen')" class="fullscreen" :title="this.isFullScreen ? '退出全屏' : '全屏'" @click="handleToolbarClick('fullscreen')">
           <i></i>
@@ -24,14 +24,14 @@
         <li v-if="configTools.includes('center')" class="center" title="画布中心" @click="handleToolbarClick('center')">
           <i></i>
         </li>
-        <template v-if="configTools.includes('map')">
+        <!-- <template v-if="configTools.includes('map')">
           <li v-if="isShowMap" title="隐藏小地图" @click="handleToolbarClick('map')">
             <i style="color: #3f92fe" class="apIconfont iconlianludu"></i>
           </li>
           <li v-else title="显示小地图" @click="handleToolbarClick('map')">
             <i style="color: #98a302" class="apIconfont iconlianludu"></i>
           </li>
-        </template>
+        </template> -->
       </ul>
     </div>
   </div>
@@ -111,37 +111,42 @@ export default {
   },
   methods: {
     async setZoomFontSize() {
-      this.isManual = true
       await this.$nextTick()
       const lineNums = [...new Set(this.g6Data.nodes.map((node) => node.lineNum))]
       const singleLine = lineNums.length === 1
-      // 监听缩放事件
       const zoom = this.zoom
       let fontSize = 12
-      if (zoom === 1) {
+      
+      // 根据缩放比例计算字体大小
+      if (zoom >= 1) {
         fontSize = 14
-      } else if (zoom < 1 && zoom >= 0.9) {
+      } else if (zoom >= 0.9) {
         fontSize = singleLine ? 16 : 14
-      } else if (zoom < 0.9 && zoom >= 0.8) {
-        fontSize = singleLine ? 27 : 16
-      } else if (zoom < 0.8 && zoom >= 0.7) {
-        fontSize = singleLine ? 19 : 17
-      } else if (zoom < 0.7 && zoom >= 0.6) {
+      } else if (zoom >= 0.8) {
+        fontSize = singleLine ? 18 : 16
+      } else if (zoom >= 0.7) {
         fontSize = singleLine ? 20 : 18
-      } else if (zoom < 0.6 && zoom >= 0.5) {
-        fontSize = singleLine ? 24 : 19
-      } else if (zoom < 0.5) {
-        fontSize = singleLine ? 28 : 20
+      } else if (zoom >= 0.6) {
+        fontSize = singleLine ? 22 : 20
+      } else if (zoom >= 0.5) {
+        fontSize = singleLine ? 24 : 22
+      } else {
+        fontSize = singleLine ? 26 : 24
       }
-      const data = JSON.parse(JSON.stringify(this.g6Data))
-      data.nodes.forEach((node) => {
+
+      // 只更新需要变化的节点
+      this.g6Data.nodes.forEach((node) => {
         if (node?.textAttrs?.fontSize) {
-          node.textAttrs.fontSize = fontSize
+          const nodeModel = this.graph.findById(node.id).getModel()
+          nodeModel.textAttrs.fontSize = fontSize
+          this.graph.updateItem(node.id, {
+            textAttrs: {
+              ...nodeModel.textAttrs
+            }
+          })
         }
       })
-      console.log('setZoomFontSize', this.zoom, data)
-      this.graph.data(data)
-      this.graph.render()
+      this.graph.refresh()
     },
     handleMouseup() {
       this.isDragging = false
@@ -265,22 +270,18 @@ export default {
       graph.on('wheelzoom', (e) => {
         this.zoom = this.graph.getZoom()
       })
-      graph.on('afterrenderer', (e) => {
+      graph.on('afterrenderer', () => {
         console.log('afterrenderer')
-        // 因为根据设备字体尺寸等 所以触发渲染之后再进行缩放
-        if (!this.isManual) {
-          // 初始化缩放设置四个方向上的间距值
-          this.graph.fitView([this.hasAbnormalLine ? 50 : 10, 50, 10, 10], {
-            onlyOutOfViewport: true,
-          })
+        // 确保数据渲染完成后再调用fitView
+        this.$nextTick(() => {
+          this.graph.fitView([20, 20, 20, 20])
           this.zoom = this.graph.getZoom()
-          setTimeout(() => {
-            this.zoom = this.zoom + 0.0001
-          }, 300)
-        } else {
-          this.graph.zoomTo(this.zoom)
-        }
-        this.graph.fitCenter()
+        })
+      })
+      
+      graph.on('viewportchange', () => {
+        console.log('viewportchange')
+        this.zoom = this.graph.getZoom()
       })
       this.graph = graph
     },
@@ -323,14 +324,14 @@ export default {
           this.handleToCenter()
           break
         case 'zoomIn':
-          this.zoom += +(this.zoom + 0.1).toFixed(2)
-          // this.graph.zoomTo(this.zoom)
-          // this.graph.fitCenter()
+          this.zoom = +(this.zoom + 0.1).toFixed(2)
+          this.graph.zoomTo(this.zoom)
+          this.graph.fitCenter()
           break
         case 'zoomOut':
-          this.zoom += +(this.zoom - 0.1).toFixed(2)
-          // this.graph.zoomTo(this.zoom)
-          // this.graph.fitCenter()
+          this.zoom = +(this.zoom - 0.1).toFixed(2)
+          this.graph.zoomTo(this.zoom)
+          this.graph.fitCenter()
           break
         case 'map':
           this.isShowMap = !this.isShowMap
@@ -339,8 +340,8 @@ export default {
     },
     handleToCenter(zoom = 1) {
       this.zoom = zoom
-      // this.graph.zoomTo(zoom)
-      // this.graph.fitCenter()
+      this.graph.zoomTo(zoom)
+      this.graph.fitCenter()
     },
     async handleFullscreen() {
       // this.clearNodeAndEdgeState()
@@ -396,7 +397,7 @@ export default {
     .empty-chart {
       display: block;
     }
-    .tools-contaniner {
+    .tools-container {
       display: none;
     }
     .top-tools {
@@ -422,7 +423,7 @@ export default {
     background: #fff;
     border-radius: 4px;
   }
-  .tools-contaniner {
+  .tools-container {
     position: absolute;
     right: 15px;
     bottom: 15px;

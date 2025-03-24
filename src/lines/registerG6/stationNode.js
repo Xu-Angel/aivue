@@ -4,7 +4,24 @@ import { hexToRgba } from '@/utils/color.js'
 export default function StationNode() {
   G6.registerNode(
     'stationNode',
-    {
+    {      
+      update(cfg, item) {
+        const group = item.getContainer()
+        const children = group.get('children')
+        const mainBox = children.find((item) => item.get('name') === 'main-box' || item.get('name') === 'rect-main-box')
+        const nodeLabel = children.find((item) => item.get('name') === 'node-label')
+        
+        // 更新文本属性
+        if (cfg.textAttrs && nodeLabel) {
+          console.log(cfg.textAttrs,'cccc')
+          nodeLabel.attr(cfg.textAttrs)
+        }
+        
+        // 更新其他属性
+        if (cfg.style && mainBox) {
+          mainBox.attr(cfg.style)
+        }
+      },
       setState(name, value, item) {
         const model = item.getModel()
         const group = item?.getContainer()
