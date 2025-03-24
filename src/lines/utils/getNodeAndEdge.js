@@ -402,8 +402,8 @@ export const generateDataForLines = function (linesObj) {
       }
     }
     const { offsetX, offsetY } = checkStartPoint(mainPoints, linesOthInfo[lineKey].startXY)
-    const xFactor = linesOthInfo[lineKey].xFactor || 1
-    const yFactor = linesOthInfo[lineKey].yFactor || 1
+    const xFactor = linesOthInfo[lineKey].xFactor ?? 1
+    const yFactor = linesOthInfo[lineKey].yFactor ?? 1
     // 处理主干节点
     mainPoints.forEach((point, index) => {
       // 加上偏移
@@ -414,8 +414,8 @@ export const generateDataForLines = function (linesObj) {
         x: offsetX,
         y: offsetY,
       }
-      point.x = isStartNode ? point.x : point.x - xFactor * (rectWidth / 2)
-      point.y = isStartNode ? point.y : point.y - yFactor * (rectHeight / 2)
+      point.x = !isStartNode ? point.x : point.x - xFactor * (rectWidth / 2)
+      point.y = !isStartNode ? point.y : point.y - yFactor * (rectHeight / 2)
       const label = isStartNode ? `${lineKey}.${lineObj.serviceLineConfig.name}` : point.label || ''
       // 在边的关系中找他的前后节点
       const prevDataId = lineObj.edges.find(({ source, target }) => target === point.dataId)?.source

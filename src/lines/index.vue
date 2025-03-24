@@ -6,8 +6,8 @@
       'is-show-map': isShowMap,
     }"
     class="subway-topo"
-    ref="topology">
-    <div v-loading="loading" class="g6-container" id="g6Container" ref="g6Container"></div>
+    ref="topologyRef">
+    <div v-loading="loading" class="g6-container" id="g6Container" ref="g6ContainerRef"></div>
 
     <div class="empty-chart"></div>
     <div class="tools-container" ref="tools" v-if="configTools.length">
@@ -93,7 +93,7 @@ export default {
       this.initGraph()
     })
     this.$nextTick(() => {
-      const parentEl = this.$refs.topology
+      const parentEl = this.$refs.topologyRef
       this.topologyOffset = {
         width: parentEl.offsetWidth,
         height: parentEl.offsetHeight,
@@ -105,7 +105,7 @@ export default {
   beforeDestroy() {
     this.graph?.destroy()
     this.graph = null
-    this.resizeObserver?.unobserve(this.$refs.topology)
+    this.resizeObserver?.unobserve(this.$refs.topologyRef)
     this.resizeObserver.disconnect()
     window.removeEventListener('mouseup', this.handleMouseup)
   },
@@ -153,25 +153,19 @@ export default {
       this.canDragCombo = false
     },
     initGraph() {
-      const parentEl = this.$refs.topology
+      const parentEl = this.$refs.topologyRef
       this.topologyOffset = {
         width: parentEl.offsetWidth,
         height: parentEl.offsetHeight,
       }
       const graph = new G6.Graph({
-        container: this.$refs.g6Container,
+        container: this.$refs.g6ContainerRef,
         width: parentEl.offsetWidth,
         height: parentEl.offsetHeight,
         background: {
           color: '#f5f5f5',
         },
         layout: {
-          getTopoInstance: () => {
-            return this.graph
-          },
-          onLayoutEnd: () => {
-            this.loading = false
-          },
         },
         modes: {
           default: ['drag-canvas', 'zoom-canvas', 'click-select'],
@@ -274,16 +268,22 @@ export default {
         console.log('afterrenderer')
         // 确保数据渲染完成后再调用fitView
         this.$nextTick(() => {
-          this.graph.fitView([20, 20, 20, 20])
-          this.zoom = this.graph.getZoom()
+          this.zoom = graph.getZoom()
+         
         })
       })
       
       graph.on('viewportchange', () => {
-        console.log('viewportchange')
+        // console.log('viewportchange')
         this.zoom = this.graph.getZoom()
       })
       this.graph = graph
+   
+
+         setTimeout(() => {
+                   this.graph.fitView([20, 20, 20, 20])
+              }, 100)   
+
     },
     refreshData(data) {
       if (data.nodes.length) {
@@ -349,7 +349,7 @@ export default {
       this.isFullScreen = !this.isFullScreen
       await this.$nextTick()
       if (this.isFullScreen) {
-        const { offsetWidth, offsetHeight } = this.$refs.topology
+        const { offsetWidth, offsetHeight } = this.$refs.topologyRef
         this.graph.changeSize(offsetWidth, offsetHeight)
       } else {
         this.graph.changeSize(this.topologyOffset.width, this.topologyOffset.height)
@@ -358,16 +358,16 @@ export default {
     },
     resizeCanvas() {
       setTimeout(() => {
-        this.graph?.changeSize(this.$refs.topology.offsetWidth, this.$refs.topology.offsetHeight)
+        this.graph?.changeSize(this.$refs.topologyRef.offsetWidth, this.$refs.topologyRef.offsetHeight)
       }, 200)
     },
     onListeningResize() {
       this.resizeObserver = new ResizeObserver(
         _.debounce((entries) => {
-          this.$refs.topology && this.resizeCanvas()
+          this.$refs.topologyRef && this.resizeCanvas()
         }, 100)
       )
-      this.resizeObserver.observe(this.$refs.topology)
+      this.resizeObserver.observe(this.$refs.topologyRef)
     },
   },
 }
@@ -523,7 +523,6 @@ export default {
   .g6-container {
     position: relative;
     z-index: 1;
-    height: 100%;
     .g6-grid-container {
       background-color: #f4f7fa;
     }
@@ -532,18 +531,6 @@ export default {
       display: block;
     }
   }
-  .g6-component-tooltip {
-    position: relative;
-    max-width: 700px;
-    font-size: 12px;
-    background-color: #fff;
-    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.1), 0px 0px 1px rgba(15, 34, 67, 0.16);
-    border-radius: 6px;
-    padding: 0;
-    border: none;
-    z-index: 3;
-  }
-
   .empty-chart {
     display: none;
     position: absolute;

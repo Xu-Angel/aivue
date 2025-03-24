@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+     <div class="business-map-top" style="height: 48px; display: flex; justify-content: center; align-items: center">
+      <!-- @timeChange="handleTimeChange"  -->
+    <TimeSlider v-if="now" style="flex: 1" :now="now" :sliderAlarm="sliderAlarm" />
+     </div>
+ 
     <div class="business-map-content">
       <Lines ref="subwayTopo"></Lines>
     </div>
@@ -10,12 +15,15 @@
 import GraphDemo from './components/GraphDemo.vue'
 import Lines from './lines/index.vue'
 import mock from './mock'
+import alarmLine from './alarmLine'
 import { generateDataForLines } from './lines/utils/getNodeAndEdge'
+import TimeSlider from './timeSlider.vue'
 export default {
   name: 'App',
   components: {
     GraphDemo,
     Lines,
+    TimeSlider
   },
   data() {
     return {
@@ -23,6 +31,8 @@ export default {
       topoData: null,
       linesData: null,
       abnormalLine: [],
+      now:new Date(),
+      sliderAlarm:[...alarmLine]
     }
   },
   methods: {

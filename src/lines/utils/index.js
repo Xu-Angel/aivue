@@ -1,15 +1,14 @@
 import G6 from '@antv/g6'
 
-export function fittingString(str, maxWidth, fontSize = 12, singleline = false) {
+export function fittingString(str, maxWidth, fontSize = 12, singleLine = false) {
   const ellipsis = '...'
   let currentWidth = 0
   let res = str
-  const pattern = /[\u4e00-\u9fa5]/ // distinguish the Chinese characters and letters
+  const pattern = new RegExp('[\u4E00-\u9FA5]+') // distinguish the Chinese charactors and letters
   str.split('').forEach((letter, i) => {
-    if (currentWidth > maxWidth) {
-      if (pattern.test(letter)) {
-        return
-      }
+    if (currentWidth > maxWidth) return
+    if (pattern.test(letter)) {
+      // Chinese charactors
       currentWidth += fontSize
     } else {
       // get the width of single letter according to the fontSize
@@ -18,7 +17,8 @@ export function fittingString(str, maxWidth, fontSize = 12, singleline = false) 
     if (currentWidth > maxWidth) {
       const line1 = str.substr(0, i)
       const line2 = str.substr(i).length > line1.length ? str.substr(i, line1.length - 3) + ellipsis : str.substr(i)
-      res = singleline ? `${line1}${ellipsis}` : `${line1}\n${line2}`
+
+      res = singleLine ? `${line1}${ellipsis}` : `${line1}\n${line2}`
     }
   })
   return res
