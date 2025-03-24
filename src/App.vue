@@ -14,7 +14,8 @@
 <script>
 import GraphDemo from './components/GraphDemo.vue'
 import Lines from './lines/index.vue'
-import mock from './mock'
+// import mock from './mock'
+import mock from './allMock'
 import alarmLine from './alarmLine'
 import { generateDataForLines } from './lines/utils/getNodeAndEdge'
 import TimeSlider from './timeSlider.vue'
@@ -55,7 +56,7 @@ export default {
           return {
             ...node,
             id: `line-${lineNum}-${node.cmdbId}`,
-            label: node.iconType === 'app_system' ? node.systemName : node.serviceName || node.name,
+            label: node.systemName,
             isShowTooltip: node.iconType === 'app_service',
             color,
           }
